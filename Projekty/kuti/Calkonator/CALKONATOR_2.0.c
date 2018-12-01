@@ -13,7 +13,7 @@
 
 
 */
-
+nie wiem jak odnalezc sile by przezwyciezyc zgnilizne codziennej szarosci
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
