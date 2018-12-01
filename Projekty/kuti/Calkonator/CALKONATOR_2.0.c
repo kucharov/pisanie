@@ -13,6 +13,12 @@
 
 
 */
+tutaj jest moja zmiana
+
+
+
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
