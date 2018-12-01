@@ -13,10 +13,7 @@
 
 
 */
-tutaj jest moja zmiana
-
-
-
+nie wiem jak odnalezc sile by przezwyciezyc zgnilizne codziennej szarosci, a ty?
 
 
 
