@@ -13,7 +13,11 @@
 
 
 */
-nie wiem jak odnalezc sile by przezwyciezyc zgnilizne codziennej szarosci
+tutaj jest moja zmiana
+
+
+
+
 
 
 #include <stdio.h>
