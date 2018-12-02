@@ -25,6 +25,7 @@ int wczytaj(char *plik1, char (*tablica)[M])
 	{
 		int i=0, j=0, ret;
 		char strzpliku[L];
+		printf("%s",plik1);
 		FILE *fp;
 		fp=fopen(plik1,"r");
 		if (fp==NULL) ret=-1;
@@ -47,10 +48,11 @@ int wczytaj(char *plik1, char (*tablica)[M])
 									j++;
 								}
 						}
+					fclose(fp);
 					ret=0;
 			}
 		printf("%d",ret);
-		fclose(fp);
+		
 		return ret;
 	}
 	
