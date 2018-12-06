@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#define M 20
+#define M 500
 
 void wczytaj();
 void zapisz(char *, char *);
@@ -14,16 +14,15 @@ int main(int argc, char **argv)
 			printf("Nieodpowiednia liczba argumentow!\n");
 			return 0;
 		}
-	printf("Tekstowo zapisano do pliku: %s, a binarnie do: %s\n",*(argv+1),*(argv+2));
 	zapisz(*(argv+1),*(argv+2));
-	
+	printf("Tekstowo zapisano do pliku: %s, a binarnie do: %s\n",*(argv+1),*(argv+2));
 	return 0;
 }
 
 
 void wczytaj()
 	{
-		char linijka[500], szukane[]="processor";
+		char linijka[M], szukane[]="processor";
 		FILE *fp;
 		
         
@@ -45,9 +44,7 @@ void wczytaj()
 					
 			}
 			
-		fclose(fp);
-        
-        
+		fclose(fp);     
 	}
 
 void zapisz(char *tekstowo, char *binarnie)
@@ -55,7 +52,7 @@ void zapisz(char *tekstowo, char *binarnie)
 		FILE *liczenie_procesorow;
 		FILE *zapistekstowy;
 		FILE *zapisbinarny;
-		char linijka[500], szukane[]="processor", licznik_lancuch[10];
+		char linijka[M], szukane[]="processor", licznik_lancuch[10];
 		
 		int licznik=0, n=0;
 		///LICZENIE	
@@ -78,7 +75,6 @@ void zapisz(char *tekstowo, char *binarnie)
 		zapisbinarny=fopen(binarnie,"wb");
 		fprintf(zapistekstowy, "Liczba procesorow: %d",licznik);
 		sprintf(licznik_lancuch, "%d", licznik);
-		
 		n=fwrite(licznik_lancuch, 1, sizeof(licznik_lancuch), zapisbinarny);
 		fclose(zapistekstowy);
 		fclose(zapisbinarny);
