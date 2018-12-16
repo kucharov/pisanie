@@ -1,28 +1,32 @@
-#include <stdlib.h>
+
 #include <stdio.h>
-#include <math.h>
-#include <time.h>
 
 
-
-double gauss(double srednia, double odchylenie)
+int plik_wzorcowy(void)
 {
-
-	double s, losowa1, losowa2;
+	FILE *wzorzec;
 	
-		do { 
-			 
-			 losowa1 = -1 + ((double)rand()/RAND_MAX) * 2;
-			 printf("dupa");
-			losowa2 = -1 + ((double)rand()/RAND_MAX) * 2; s = pow(losowa1, 2) + pow(losowa2, 2);	} while (s >= 1 || s == 0);
-	return (srednia + odchylenie * losowa1 * sqrt(-2*log(s) / s));  // random na przedziale [0;1]
+	if ((wzorzec = fopen("SymBank_format_pliku.txt", "w")) == NULL) {printf("\nBlad tworzenia pliku wzorcowego, sprobuj jeszcze raz w innej lokalizacji.\n"); return 1;}
+	
+	fprintf(wzorzec, "tab          // w pierwszej linijce wpisz sposob opisywania prawdopodobienstwa liczby przychodzacych klientow: tab (tabelarycznie) lub par (parametrycznie)");
+	fprintf(wzorzec, "\n0 0.1     //w przypadku tabeli: w kolejnych linijkach wypisz pary: ilosc przychodzacych klientow/minute[spacja]prawdopodobienstwo(w ulamku dziesietnym)\
+			\n1 0.2\n2 0.3\n3 0.25\n4 0.15\n.      // koniec dzialu dotyczacego klientow, oddzielamy go od reszty kropka.\n");
+	fprintf(wzorzec, "okienka=3         //liczba okienek w symulowanym banku, nalezy zwrocic uwage na brak spacji!");
+	fprintf(wzorzec, "\n.\ntab\n2.5 0.5   //podajemy czas obslugi w kazdym okienku wraz z jego prawdopodobienstwem");
+	fprintf(wzorzec, "\n3 0.5    // w przypadku formy tabelarycznej, podaj pary: czas obslugi(w minutach)[spacja]prawdopodobienstwo(w ulamku dziesietnym)");
+	fprintf(wzorzec, "\n.    //kolejne okienka oddzielamy kropka \npar\nnormalny\n0     // mozemy podac parametrycznie rozklad normalny. Wtedy pierwsza podana liczba niech bedzie ");
+	fprintf(wzorzec, "wartosc oczekiwana(srednia wartosc)\n20     //a druga niech bedzie odchylenie standardowe losowanych wartosci.");
+	fprintf(wzorzec, "\n.\npar\nrownomierny\n0      //w przypadku rozkladu rownomiernego pierwsza liczba niech bedzie dolna granica przedzialu w ktorym losujemy czas(w minutach).\
+			\n5      // druga liczba to gorna granica przedzialu.\n.");
+	fclose(wzorzec);
+	return 0;
+	
 }
+
+
 
 int main(void)
 {
-	double los = gauss(0.5, 0.1);
-	printf("%lf", los);
+	plik_wzorcowy();
 	return 0;
-
-
 }

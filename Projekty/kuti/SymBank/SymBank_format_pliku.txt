@@ -1,0 +1,23 @@
+tab          // w pierwszej linijce wpisz sposob opisywania prawdopodobienstwa liczby przychodzacych klientow: tab (tabelarycznie) lub par (parametrycznie)
+0 0.1     //w przypadku tabeli: w kolejnych linijkach wypisz pary: ilosc przychodzacych klientow/minute[spacja]prawdopodobienstwo(w ulamku dziesietnym)			
+1 0.2
+2 0.3
+3 0.25
+4 0.15
+.      // koniec dzialu dotyczacego klientow, oddzielamy go od reszty kropka.
+okienka=3         //liczba okienek w symulowanym banku, nalezy zwrocic uwage na brak spacji!
+.
+tab
+2.5 0.5   //podajemy czas obslugi w kazdym okienku wraz z jego prawdopodobienstwem
+3 0.5    // w przypadku formy tabelarycznej, podaj pary: czas obslugi(w minutach)[spacja]prawdopodobienstwo(w ulamku dziesietnym)
+.    //kolejne okienka oddzielamy kropka 
+par
+normalny
+0     // mozemy podac parametrycznie rozklad normalny. Wtedy pierwsza podana liczba niech bedzie wartosc oczekiwana(srednia wartosc)
+20     //a druga niech bedzie odchylenie standardowe losowanych wartosci.
+.
+par
+rownomierny
+0      //w przypadku rozkladu rownomiernego pierwsza liczba niech bedzie dolna granica przedzialu w ktorym losujemy czas(w minutach).			
+5      // druga liczba to gorna granica przedzialu.
+.
