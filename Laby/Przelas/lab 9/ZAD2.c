@@ -20,10 +20,9 @@ int main(void)
 	
 	printf("\nJaki rozmiar tablicy?:   ");
 	scanf("%d", &rozmiar);
-	while(getchar()!='\n')
-	;
 	
-	 dupa = (struct student **)malloc((rozmiar+1)*sizeof(struct student *));
+	
+	 dupa = (struct student **)malloc((rozmiar)*sizeof(struct student *));
 	
 	
 for(i=0;i<rozmiar;i++)
@@ -36,7 +35,7 @@ for(i=0;i<rozmiar;i++)
 	for(int a=0;a<10;a++) belkot[a] = (50 + rand()%100);
 	
 	dupa[i]->semestr = (rand()%15);
-	dupa[i]->motto = belkot;
+	*(dupa[i]->motto) = "dupsko";
 	
 }
 
@@ -52,7 +51,7 @@ for( b=0;b<rozmiar;b++)
 for( b=0;b<rozmiar;b++)
 {
 	
-	//free(dupa[b]->motto);
+	free(dupa[b]->motto);
 	free(dupa[b]);
 }	
 	free(dupa);

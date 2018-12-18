@@ -21,7 +21,7 @@ while(getchar() != '\n');
 printf("\nDzieki, a nazwisko?:   ");
 scanf("%s", ws_osoba->nazwisko);
 
-printf("\nAdresy: \nws_osoba\t%p\nws_osoba->imie\t%p\nws_osoba->nazwisko\t%p\nZawartosc:\nws_osoba->imie\t%p\nws_osoba->nazwisko\t%p", &ws_osoba, &ws_osoba->imie, &ws_osoba->nazwisko, ws_osoba->imie, ws_osoba->nazwisko);
+printf("\nAdresy: \nws_osoba\t%p\nws_osoba->imie\t%p\nws_osoba->nazwisko\t%p\nZawartosc:\nws_osoba->imie\t%s\nws_osoba->nazwisko\t%s", &ws_osoba, &ws_osoba->imie, &ws_osoba->nazwisko, ws_osoba->imie, ws_osoba->nazwisko);
 
 free(ws_osoba);
 return 0;
