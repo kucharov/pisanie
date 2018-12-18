@@ -36,7 +36,8 @@ for(i=0;i<rozmiar;i++)
 	for(int a=0;a<10;a++) belkot[a] = (50 + rand()%100);
 	
 	dupa[i]->semestr = (rand()%15);
-	dupa[i]->motto = belkot;
+	strncpy(dupa[i]->motto,belkot,sizeof(belkot));
+	
 	
 }
 
@@ -52,8 +53,9 @@ for( b=0;b<rozmiar;b++)
 for( b=0;b<rozmiar;b++)
 {
 	
-	//free(dupa[b]->motto);
+	free(dupa[b]->motto);
 	free(dupa[b]);
+	
 }	
 	free(dupa);
 	return 0;
