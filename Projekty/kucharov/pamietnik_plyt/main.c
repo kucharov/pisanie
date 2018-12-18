@@ -113,38 +113,41 @@ int main(void)
 							
 							case 't': /*szukanie po tytule*/
 							odczyt_lancucha("\nPodaj tytul plyty do wszukania: ",temp_tytul);
-							printf("Oto plyta o tytule \"%s\"", temp_tytul);
+							printf("\nOto plyta o tytule \"%s\"\n", temp_tytul);
 							wyszukanieElementu(pierwszy_album, temp_tytul, zapychacz, zapychacz, K, K, K);
 							break;
 							case 'a': /*szukanie po artyscie*/
 							odczyt_lancucha("\nPodaj artyste, ktorego plyte/plyty chcesz wyszukac: ",temp_artysta);
-							printf("Oto wszystkie plyty artysty %s", temp_artysta);
+							printf("\nOto wszystkie plyty artysty \"%s\"\n", temp_artysta);
 							wyszukanieElementu(pierwszy_album, zapychacz, temp_artysta, zapychacz, K, K, K);
 							break;
 							case 'g': /*szukanie po gatunku*/
 							odczyt_lancucha("\nPodaj gatunek wedlug ktorego chcesz wyszukac plyte/plyty: ",temp_gatunek);
-							printf("Oto wszystkie plyty z gatunku %s", temp_artysta);
+							printf("\nOto wszystkie plyty z gatunku \"%s\"\n", temp_artysta);
 							wyszukanieElementu(pierwszy_album, zapychacz, zapychacz, temp_gatunek, K, K, K);
 							break;
 							case 'r': /*szukanie po roku*/
 							odczyt_inta("\nPodaj rok wydania wedlug ktorego chcesz wyszukac plyte/plyty: ",&temp_rok);
-							printf("Oto wszystkie plyty wydane w roku %d", temp_rok);
+							printf("\nOto wszystkie plyty wydane w roku \"%d\"\n", temp_rok);
 							wyszukanieElementu(pierwszy_album, zapychacz, zapychacz, zapychacz, temp_rok, K, K);
 							break;
 							case 'l': /*szukanie po l_utworow*/
 							odczyt_inta("\nPodaj liczbe utworow wedlug ktorej chcesz wyszukac plyte/plyty: ",&temp_l_utworow);
-							printf("Oto wszystkie plyty artysty: %d", temp_l_utworow);
+							printf("\nOto wszystkie plyty artysty: \"%d\"\n", temp_l_utworow);
 							wyszukanieElementu(pierwszy_album, zapychacz, zapychacz, zapychacz, K, temp_l_utworow, K);
 							break;
 							case 'i': /*szukanie po id*/
 							odczyt_inta("\nPodaj id plyty ktora chcesz wyswietlic: ",&szukane_id);
-							printf("Oto plyta o ID nr %d", szukane_id);
+							printf("\nOto plyta o ID nr \"%d\"\n", szukane_id);
 							wyszukanieElementu(pierwszy_album, zapychacz, zapychacz, zapychacz, K, K, szukane_id);
 							break;
-							case 'b': /*szukanie po tytule*/
+							case 'b': /*meniu*/
+							
 							break;
+							default:
+							puts("\nBledny wybor opcji menu!");
 						}	
-				
+					break;
 				 case 'u': /*usuwanie elementu o zadanej wartosci pola: przykladowePoleElementu*/
 					odczyt_lancucha("\nWprowadz tytul albumu, ktory chcesz usunac z listy: ",tytul_do_usuniecia);
 					pierwszy_album=usuniecieElementu(pierwszy_album,tytul_do_usuniecia);
@@ -189,7 +192,7 @@ void wyswietlenieElementow(WskaznikNaElement pierwszy_album)
 	unsigned licznikElementow=1;
 	while(biezacy_album != NULL)
     	{
-		printf("%d.\nAlbum: %s\n",licznikElementow++, biezacy_album->tytul );
+		printf("%d.\nTytul: %s\n",licznikElementow++, biezacy_album->tytul );
 		printf("Artysta: %s\n", biezacy_album->artysta );
 		printf("Gatunek: %s\n", biezacy_album->gatunek );
 		printf("Rok wydania: %d\n",biezacy_album->rok );
@@ -255,6 +258,7 @@ void wyswietlenieMenuUzytkownika_1(WskaznikNaElement pierwszy_album)
 	 	 {
 		 printf("\n\t'e'- edycja plyt ");
 		 printf("\n\t'w'- wyswietlenie wszystkich plyt ");
+		 printf("\n\t's'- szukanie plyty ");
 		 printf("\n\t'u'- usuniecie plyty ,");
 		 }
      printf("\n\t'q'- wyjscie z programu");
@@ -264,9 +268,6 @@ void wyswietlenieMenuUzytkownika_2(void)
 	{
 	 printf("\nWyszukiwanie płyty:");
 	 
-	 printf("\n\t't'- znajdz plyte wpisujac jej tytul ");
-	 printf("\n\t't'- znajdz plyte wpisujac jej tytul ");
-	 printf("\n\t't'- znajdz plyte wpisujac jej tytul ");
 	 printf("\n\t't'- znajdz plyte wpisujac jej tytul ");
      printf("\n\t'i'- znajdz plyte wpisujac jej ID ");
      printf("\n\t'b'- powrot do menu glownego");
@@ -457,32 +458,65 @@ WskaznikNaElement wyszukanieElementu(WskaznikNaElement pierwszy_album, char *tyt
 			if( !strcmp(biezacy_album->tytul,tytul_do_wyszukania)) ////WYSZUKANIE PO TYTULE
 				{
 				
-				wyswietlenieElementow(biezacy_album);
+				
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
+				
+    	
 				
 				}
 			else if ( !strcmp(biezacy_album->artysta,artysta_do_wyszukania)) ////WYSZUKANIE PO ARTYSCIE
 				{
-				wyswietlenieElementow(biezacy_album);
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
 				
 				}
 			else if ( !strcmp(biezacy_album->gatunek,gatunek_do_wyszukania)) ////WYSZUKANIE PO GATUNKU
 				{
-				wyswietlenieElementow(biezacy_album);
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
 				
 				}
 			else if (biezacy_album->rok==rok_do_wyszukania) ////WYSZUKANIE PO ROKU WYDANIA
 				{
-				wyswietlenieElementow(biezacy_album);
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
 				
 				}
 			else if (biezacy_album->l_utworow==l_utworow_do_wyszukania) ////WYSZUKANIE PO L_UTWOROW
 				{
-				wyswietlenieElementow(biezacy_album);
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
 				
 				}
 			else if (biezacy_album->id==id_do_wyszukania) ////WYSZUKANIE PO ID
 				{
-				wyswietlenieElementow(biezacy_album);
+				printf("\nTytul: %s\n", biezacy_album->tytul );
+				printf("Artysta: %s\n", biezacy_album->artysta );
+				printf("Gatunek: %s\n", biezacy_album->gatunek );
+				printf("Rok wydania: %d\n",biezacy_album->rok );
+				printf("Liczba utworow na plycie: %d\n\n", biezacy_album->l_utworow );
+				printf("ID: %d\n\n",biezacy_album->id);
 				
 				}
 			poprzedniElement = biezacy_album;
