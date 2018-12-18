@@ -34,7 +34,7 @@
 
 void menu(void);
 double gauss(double, double); //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
-void plikwzorcowy(void);
+void plik_wzorcowy(void);
 
 
 int main(void)
