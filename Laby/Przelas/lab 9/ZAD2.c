@@ -36,6 +36,11 @@ for(i=0;i<rozmiar;i++)
 	
 	dupa[i]->semestr = (rand()%15);
 	*(dupa[i]->motto) = "dupsko";
+<<<<<<< HEAD
+=======
+	//strncpy(dupa[i]->motto,belkot,sizeof(belkot));
+	
+>>>>>>> cac5ee0ff59e56792943c0da28041f614dcd5b4f
 	
 }
 
@@ -53,6 +58,7 @@ for( b=0;b<rozmiar;b++)
 	
 	free(dupa[b]->motto);
 	free(dupa[b]);
+	
 }	
 	free(dupa);
 	return 0;
