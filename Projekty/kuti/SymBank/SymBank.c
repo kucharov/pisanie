@@ -35,7 +35,7 @@
 void menu(void);
 double gauss(double, double); //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
 void plik_wzorcowy(void);
-
+int kontrolapliku(void)
 
 int main(void)
 {
@@ -48,11 +48,13 @@ char *nazwa_wejscia;
 do{
 		menu();
 		printf("\nPodaj nazwe pliku z danymi wejsciowymi(powinien znajdowac sie w katalogu roboczym)\n:   ");
-		nazwa_wejscia = (char*)malloc(35 * sizeof(char));
+		nazwa_wejscia = (char *)malloc(45 * sizeof(char));
 		scanf("%s", nazwa_wejscia);
 		if ((plik_wejsciowy = fopen(nazwa_wejscia, "r")) == NULL) printf("\nAlarm. Nie udalo sie odczytac pliku o podanej nazwie. Moze sie pomyliles albo jest on w innym katalogu niz program?\n)";
 		free(nazwa_wejscia); // oszczedzam pamiec
-	}while(wlik_wejsciowy == NULL);
+	}while(plik_wejsciowy == NULL);
+	
+	
 	
 
 	
@@ -60,6 +62,7 @@ do{
 	
 
 //  Pobranie danych z pliku	
+
 
 
 
@@ -152,6 +155,32 @@ int plik_wzorcowy(void)
 	
 }
 
+int kontrolapliku(FILE *plik_wejsciowy)
+{
+	int a;
+	char tab[51];
+	
+	fscanf(plik_wejsciowy, "%s", tab);
+	if ((tab[0]=='t' && tab[1]=='a' && tab[2]==) || (tab[0]=='p' && tab[1]=='a' && tab[w]=='r');
+		else return 1;
+	for(a=0;a<51;a++) tab[a]= '\n'; //czyszczenie tablicy przed kolejna kontrola	
+		
+		
+	if (tab[0]=='t') 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
 
 
 
