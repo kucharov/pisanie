@@ -10,6 +10,9 @@
 #define K 10000
 #define ROZMIAR 20
 
+//komunikaty
+//sortowanie
+//entery...
 
 struct Element
    {
@@ -36,28 +39,38 @@ typedef enum {FALSZ, PRAWDA} Bool;
 
 int forma_dodawanie_elementu(char *, char *, char *, int *, int *);
 int forma_edycja_elementu(char *, char *, char *, int *, int *);
-void menu(int *);
+void menu(CDKSCREEN *,WINDOW *, int *);
 /*funkcja dodaje nowy element na poczatek  i jako wynik zwraca wskaznik do niego*/
 WskaznikNaElement dodanieNowegoElementu(WskaznikNaElement pierwszy_album, char *, char *, char * , int  , int );
 /*funcja usuwa pierwszy element dla ktorego przykladowePoleElementu==wartoscPola*/
 
 WskaznikNaElement usuniecieElementu(WskaznikNaElement pierwszy_album, char *);
 WskaznikNaElement zwolnieniePamieci(WskaznikNaElement pierwszy_album);
-int wyswietlenie_calosci(WskaznikNaElement pierwszy_album);
-int wyswietlenie_wyszukania(WskaznikNaElement pierwszy_album,int);
+int wyswietlenie_calosci(CDKSCREEN *, WskaznikNaElement pierwszy_album);
+int wyswietlenie_wyszukania(CDKSCREEN *,WskaznikNaElement pierwszy_album,int);
 void edycjaDanych(WskaznikNaElement pierwszy_album, char *, int );
 WskaznikNaElement wyszukanieElementu_edycja(WskaznikNaElement pierwszy_album, char *, int );
 WskaznikNaElement wyszukanieElementu(WskaznikNaElement pierwszy_album, char *, char *, char *, int , int , int, WINDOW * );
-char *pobor_danych (const char *,char *temp);
-int dialog_1 (int , char **, int *);
-int dialog_2 (int , char **, int *);
+char *pobor_danych (CDKSCREEN *,const char *,char *temp);
+int dialog_1 (CDKSCREEN *,int , char **, int *);
+int dialog_2 (CDKSCREEN *,int , char **, int *);
+int dialog_3 (CDKSCREEN *,int , char **, int *);
+int dialog_4 (CDKSCREEN *,int , char **, int *);
 char *trim(char *);
-char *wybor_pliku (char *);
+char *wybor_pliku (CDKSCREEN *ekran,char *);
 WskaznikNaElement wczytanie_do_struktury(WskaznikNaElement ,char *);
 int zapis_do_pliku(WskaznikNaElement );
-
-
-
+int sortowanie(CDKSCREEN *,WskaznikNaElement, int, int);
+int Msortuj_rok(const void * a, const void * b);
+int Msortuj_l_utworow(const void * a, const void * b);
+int Msortuj_tytul(const void * a, const void * b);
+int Msortuj_artysta(const void * a, const void * b);
+int Msortuj_gatunek(const void * a, const void * b);
+int Rsortuj_rok(const void * a, const void * b);
+int Rsortuj_l_utworow(const void * a, const void * b);
+int Rsortuj_tytul(const void * a, const void * b);
+int Rsortuj_artysta(const void * a, const void * b);
+int Rsortuj_gatunek(const void * a, const void * b);
 
 /*zmienne STATYCZNE ncurses*/
 static int funcja_zwrotna(EObjectType, void *,void *,chtype);
@@ -97,24 +110,37 @@ int main (int argc, char **argv)
 		WskaznikNaElement pierwszy_album = NULL;
 		char wybranaOpcjaMenu, nazwa_pliku[C]={"\0"};
 		char temp_tytul[ROZMIAR], temp_artysta[ROZMIAR], temp_gatunek[ROZMIAR], tytul_do_usuniecia[ROZMIAR], zapychacz[ROZMIAR]="stolzpowylamywanymi";
-		int temp_rok, temp_l_utworow, szukane_id, wybor;
+		int temp_rok, temp_l_utworow, szukane_id, wybor, wybor1=0, wybor2=0;
+		CDKSCREEN *ekran;
+		WINDOW *okno;
+		okno = initscr ();
+		ekran = initCDKScreen (okno);
 		for(;;)
 			{
-				menu(&wybrany);
+				menu(ekran, okno,&wybrany);
 				//wyswietl spis
 				if((wybrany / 100)==0 && (wybrany % 100)==0)
 					{
-						if(pierwszy_album!=NULL) wyswietlenie_calosci(pierwszy_album);
-								
+						
+						if(pierwszy_album!=NULL) wyswietlenie_calosci(ekran,pierwszy_album);
+						
+						ekran = initCDKScreen (okno);
 					}
 				//wyszukaj utwor
 				else if((wybrany / 100)==0 && (wybrany % 100)==1)
 					{
-						dialog_2(argc, NULL, &wybor);
-						wyswietlenie_wyszukania(pierwszy_album,wybor);
-							
+						dialog_2(ekran,argc, NULL, &wybor);
+						wyswietlenie_wyszukania(ekran,pierwszy_album,wybor);
+						ekran = initCDKScreen (okno);
 					}
-				
+				//sortowanie plyty
+				else if((wybrany / 100)==0 && (wybrany % 100)==2)
+					{
+						dialog_3(ekran,argc, NULL, &wybor1);
+						dialog_4(ekran,argc, NULL, &wybor2);
+						sortowanie(ekran,pierwszy_album,wybor1,wybor2);
+						ekran = initCDKScreen (okno);
+					}
 				//dodanie elementu
 				else if((wybrany / 100)==1 && (wybrany % 100)==0)
 					{
@@ -125,34 +151,32 @@ int main (int argc, char **argv)
 				//edycja elementu
 				else if((wybrany / 100)==1 && (wybrany % 100)==1)
 					{
-						dialog_1(argc, NULL, &wybor);
+						dialog_1(ekran,argc, NULL, &wybor);
 						if (wybor==0) 
 							{
 
-								edycjaDanych(pierwszy_album, pobor_danych("Wpisz tytul plyty do wyszukania",temp_tytul), K);
+								edycjaDanych(pierwszy_album, pobor_danych(ekran,"Wpisz tytul plyty do wyszukania",temp_tytul), K);
 							}
 						else if (wybor==1) 
 							{
 								
-								szukane_id=atoi(pobor_danych("Wpisz ID plyty do wyszukania",temp_tytul));
+								szukane_id=atoi(pobor_danych(ekran,"Wpisz ID plyty do wyszukania",temp_tytul));
 								
 								edycjaDanych(pierwszy_album, zapychacz, szukane_id);
 							}
-						
-						
-								
+									
 					}
 				//usuwanie plyty
 				else if((wybrany / 100)==1 && (wybrany % 100)==2)
 					{
 						
-						usuniecieElementu(pierwszy_album,pobor_danych("Wpisz tytul plyty do usuniecia",temp_tytul));
+						pierwszy_album=usuniecieElementu(pierwszy_album,pobor_danych(ekran,"Wpisz tytul plyty do usuniecia",temp_tytul));
 								
 					}
 				//wczytanie z pliku
 				else if((wybrany / 100)==1 && (wybrany % 100)==3)
 					{
-					pierwszy_album=wczytanie_do_struktury(pierwszy_album,wybor_pliku(nazwa_pliku));
+					pierwszy_album=wczytanie_do_struktury(pierwszy_album,wybor_pliku(ekran,nazwa_pliku));
 					
 					}
 				//zapis do pliku
@@ -162,30 +186,36 @@ int main (int argc, char **argv)
 					
 					}
 				//wyjscie
-				else if((wybrany / 100)==0 && (wybrany % 100)==2)
+				else if((wybrany / 100)==0 && (wybrany % 100)==3)
 					{
+						destroyCDKScreen (ekran);
+						endCDK ();
+						endwin();
 						return 0;
 							
 					}
 			}
+		destroyCDKScreen (ekran);
+		endCDK ();
+		endwin();
 		return 0;
 		
 		
 	}
 ///  FUNKCJE	
-void menu(int *wybrany)
+void menu(CDKSCREEN *ekran,WINDOW *okno, int *wybrany)
 {
-   CDKSCREEN *ekran;
+   //CDKSCREEN *ekran;
    CDKLABEL *info;
    CDKMENU *menu;
-   WINDOW *okno;
-   int rozmiar_submenu[3]={4,6,4}, pozycja_submenu[3]={LEFT,LEFT,RIGHT};
+   //WINDOW *okno;
+   int rozmiar_submenu[3]={5,6,4}, pozycja_submenu[3]={LEFT,LEFT,RIGHT};
    const char *tekst[2]={"                                                    ",
 						"                                                    "};
    char temp[256];
 	start_color();
-	okno = initscr ();
-	ekran = initCDKScreen (okno);
+	//okno = initscr ();
+	//ekran = initCDKScreen (okno);
 	noecho();
 	curs_set(0);
 
@@ -193,7 +223,8 @@ void menu(int *wybrany)
 	elementy_menu[0][0] = "</B>Baza danych<!B>";
 	elementy_menu[0][1] = "</B>Wyswietl spis<!B>";
 	elementy_menu[0][2] = "</B>Wyszukaj plyte<!B>";
-	elementy_menu[0][3] = "</B>Wyjscie<!B>";
+	elementy_menu[0][3] = "</B>Sortuj i wyswietl<!B>";
+	elementy_menu[0][4] = "</B>Wyjscie<!B>";
 
 	elementy_menu[1][0] = "</B>Edycja<!B>";
 	elementy_menu[1][1] = "</B>Dodaj<!B> ";
@@ -218,8 +249,8 @@ void menu(int *wybrany)
    
    destroyCDKMenu (menu);
    destroyCDKLabel (info);
-   destroyCDKScreen (ekran);
-   endCDK ();
+   endwin();
+   eraseCDKScreen(ekran);
    
 }
 
@@ -289,7 +320,6 @@ int forma_dodawanie_elementu(char *temp_tytul, char *temp_artysta, char *temp_ga
 		
 		int ch,wiersz=4,wiersze,kolumny;
 		long int konwersja_input_int;
-		initscr();
 		getmaxyx(stdscr,wiersze,kolumny);
 		cbreak();
 		start_color();
@@ -406,7 +436,6 @@ int forma_edycja_elementu(char *temp_tytul, char *temp_artysta, char *temp_gatun
 		char rok_lancuch[ROZMIAR], liczba_lancuch[ROZMIAR];
 		int ch,wiersz=4,wiersze,kolumny;
 		long int konwersja_input_int;
-		initscr();
 		getmaxyx(stdscr,wiersze,kolumny);
 		cbreak();
 		start_color();
@@ -558,7 +587,7 @@ WskaznikNaElement dodanieNowegoElementu(WskaznikNaElement pierwszy_album, char *
     return nowyElement;
    }
 
-int wyswietlenie_calosci(WskaznikNaElement pierwszy_album)
+int wyswietlenie_calosci(CDKSCREEN *ekran, WskaznikNaElement pierwszy_album)
    {
 	WskaznikNaElement biezacy_album=pierwszy_album;
 	const char *tekst[3]={"strzalka w dol - przewijanie listy w dol                                 ",
@@ -569,22 +598,19 @@ int wyswietlenie_calosci(WskaznikNaElement pierwszy_album)
 	int mrow, mcol=70, rowcount =100;
 	WINDOW *pad;
 	CDKLABEL *info;
-	CDKSCREEN *ekran;
 	
-	initscr();
+	//CURSES setup
 	keypad(stdscr, TRUE);
 	start_color();
 	getmaxyx(stdscr, mrow, mcol);
 	curs_set(0);
-	
 	pad = newpad (rowcount + 1, mcol);
-	
-	fprintf(stdin, "\n");
-	//INFO
 	ekran = initCDKScreen (pad);
-	info = newCDKLabel (ekran, CENTER, TOP, (CDK_CSTRING2) tekst, 3, TRUE, FALSE);
 	
 	
+	
+	//DANE
+	info = newCDKLabel (ekran, RIGHT, TOP, (CDK_CSTRING2) tekst, 3, TRUE, FALSE);
 	
 	while(biezacy_album != NULL)
     	{
@@ -597,12 +623,11 @@ int wyswietlenie_calosci(WskaznikNaElement pierwszy_album)
 		biezacy_album = biezacy_album->nastepny_album;
     	}
     	
-	  prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
-	 
+	prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+	refreshCDKScreen (ekran);
 	
 	
-	  // menu
-	  fprintf(stdin, "\n");
+	  // MENU
 	  while((ch = getch()) != KEY_F(5))
 	  {
 		fprintf(stdin, "\n");
@@ -645,13 +670,15 @@ int wyswietlenie_calosci(WskaznikNaElement pierwszy_album)
     destroyCDKScreen (ekran);
 	clear();
     endwin();
-    endCDK ();
+	
+   
     return 0;
    }
-int wyswietlenie_wyszukania(WskaznikNaElement pierwszy_album, int wybor)
+int wyswietlenie_wyszukania(CDKSCREEN *ekran,WskaznikNaElement pierwszy_album, int wybor)
    {
 	
-	
+	WINDOW *pad;
+	CDKLABEL *info;
 	int mypadpos = 0, ch, szukana_dana;
 	char smietnik, temp_tytul[ROZMIAR], zapychacz[ROZMIAR]="stolzpowylamywanymi";
 	const char *tekst[3]={"strzalka w dol - przewijanie listy w dol                                 ",
@@ -659,53 +686,42 @@ int wyswietlenie_wyszukania(WskaznikNaElement pierwszy_album, int wybor)
 						"F5 - wyjscie do menu glownego                                            "};
 	int mrow, mcol=70, rowcount =100;
 	int argc=4;
+	
+	
 	if (wybor==0) 
 		{
-			 strcpy(temp_tytul,pobor_danych("Wpisz tytul plyty do wyszukania",temp_tytul));
+			 strcpy(temp_tytul,pobor_danych(ekran,"Wpisz tytul plyty do wyszukania",temp_tytul));
 		}
 	else if (wybor==1) 
 		{
-			strcpy(temp_tytul,pobor_danych("Wpisz artyste, ktorego plyty szukasz",temp_tytul));
+			strcpy(temp_tytul,pobor_danych(ekran,"Wpisz artyste, ktorego plyty szukasz",temp_tytul));
 		}
 	else if (wybor==2) 
 		{
-			strcpy(temp_tytul,pobor_danych("Wpisz gatunek plyt, ktorych szukasz",temp_tytul));
+			strcpy(temp_tytul,pobor_danych(ekran,"Wpisz gatunek plyt, ktorych szukasz",temp_tytul));
 		}
 	else if (wybor==3) 
 		{
-			szukana_dana=atoi(pobor_danych("Wpisz rok wydania plyt, ktorych szukasz",temp_tytul));		 
+			szukana_dana=atoi(pobor_danych(ekran,"Wpisz rok wydania plyt, ktorych szukasz",temp_tytul));		 
 		}	
 	else if (wybor==4) 
 		{
-			szukana_dana=atoi(pobor_danych("Wpisz liczbe utworow na plytach, ktorych szukasz",temp_tytul));		 
+			szukana_dana=atoi(pobor_danych(ekran,"Wpisz liczbe utworow na plytach, ktorych szukasz",temp_tytul));		 
 		}
 	else if (wybor==5) 
 		{
-			szukana_dana=atoi(pobor_danych("Wpisz ID plyty ktorej szukasz",temp_tytul));		 
+			szukana_dana=atoi(pobor_danych(ekran,"Wpisz ID plyty ktorej szukasz",temp_tytul));		 
 		}
 	
 	
-	
-	WINDOW *pad;
-	CDKLABEL *info;
-	CDKSCREEN *ekran;
-	
-	initscr();
+	//CURSES setup
 	keypad(stdscr, TRUE);
 	start_color();
 	getmaxyx(stdscr, mrow, mcol);
 	curs_set(0);
-	
 	pad = newpad (rowcount + 1, mcol);
-	
-	fprintf(stdin, "\n");
-	//INFO
 	ekran = initCDKScreen (pad);
-	info = newCDKLabel (ekran, CENTER, TOP, (CDK_CSTRING2) tekst, 3, TRUE, FALSE);
-	
-	
-	
-	
+	info = newCDKLabel (ekran, RIGHT, TOP, (CDK_CSTRING2) tekst, 3, TRUE, FALSE);
 	
 	///DANE
 	if (wybor==0) 
@@ -732,11 +748,14 @@ int wyswietlenie_wyszukania(WskaznikNaElement pierwszy_album, int wybor)
 		{
 			wyszukanieElementu( pierwszy_album, zapychacz, zapychacz, zapychacz, K, K, szukana_dana,pad);		 
 		}
-    	
+
+
+	prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+	refreshCDKScreen (ekran);
 	
     
 	 
-	  // menu
+	  // MENU
 	  
 	  while((ch = getch()) != KEY_F(5))
 	  {
@@ -776,12 +795,11 @@ int wyswietlenie_wyszukania(WskaznikNaElement pierwszy_album, int wybor)
     destroyCDKScreen (ekran);
 	clear();
     endwin();
-    endCDK ();
     return 0;
    }
 
 
-int dialog_1 (int argc, char **argv, int *wybor)
+int dialog_1 (CDKSCREEN *ekran, int argc, char **argv, int *wybor)
 {
    /* *INDENT-EQLS* */
    CDKSCREEN *cdkscreen = 0;
@@ -796,10 +814,9 @@ int dialog_1 (int argc, char **argv, int *wybor)
 
    CDKparseParams (argc, argv, &params, CDK_MIN_PARAMS);
 
-   cdkscreen = initCDKScreen (NULL);
+   cdkscreen = ekran;
 
    /* Start color. */
-   initCDKColor ();
 	curs_set(0);
    /* Create the message within the dialog box. */
    message[0] = "<C></B>Edycja plyty";
@@ -824,9 +841,8 @@ int dialog_1 (int argc, char **argv, int *wybor)
    if (question == 0)
    {
       /* Shut down Cdk. */
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
-
+        endwin();
+   eraseCDKScreen(ekran);
       printf ("Za male okno terminala\n");
       return 0;
    }
@@ -839,13 +855,13 @@ int dialog_1 (int argc, char **argv, int *wybor)
 
    /* Clean up. */
    destroyCDKDialog (question);
-   destroyCDKScreen (cdkscreen);
-   endCDK ();
+   endwin();
+   eraseCDKScreen(ekran);
    return 0;
    
 }
 
-int dialog_2 (int argc, char **argv, int *wybor)
+int dialog_2 (CDKSCREEN *ekran,int argc, char **argv, int *wybor)
 {
    /* *INDENT-EQLS* */
    CDKSCREEN *cdkscreen = 0;
@@ -860,10 +876,8 @@ int dialog_2 (int argc, char **argv, int *wybor)
 
    CDKparseParams (argc, argv, &params, CDK_MIN_PARAMS);
 
-   cdkscreen = initCDKScreen (NULL);
+   cdkscreen = ekran;
 
-   /* Start color. */
-   initCDKColor ();
 	curs_set(0);
    /* Create the message within the dialog box. */
    message[0] = "<C></B>Wyszukiwanie plyty";
@@ -888,8 +902,8 @@ int dialog_2 (int argc, char **argv, int *wybor)
    if (question == 0)
    {
       /* Shut down Cdk. */
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+		endwin();
+		eraseCDKScreen(ekran);
 
       printf ("Za male okno terminala\n");
       return 0;
@@ -903,27 +917,142 @@ int dialog_2 (int argc, char **argv, int *wybor)
 
    /* Clean up. */
    destroyCDKDialog (question);
-   destroyCDKScreen (cdkscreen);
-   endCDK ();
+   endwin();
+   eraseCDKScreen(ekran);
    return 0;
    
 }
-char *pobor_danych (const char *title, char *info)
+int dialog_3 (CDKSCREEN *ekran,int argc, char **argv, int *wybor)
+{
+   /* *INDENT-EQLS* */
+   CDKSCREEN *cdkscreen = 0;
+   CDKDIALOG *question  = 0;
+   const char *buttons[] =
+   {"</B16>Tytul","</B16>Artysta","</B16>Gatunek","</B16>Rok wydania","</B16>Liczba utworow"};
+   const char *message[10];
+   const char *mesg[3];
+   char temp[100];
+   
+   CDK_PARAMS params;
+
+   CDKparseParams (argc, argv, &params, CDK_MIN_PARAMS);
+
+   cdkscreen = ekran;
+
+	curs_set(0);
+   /* Create the message within the dialog box. */
+   message[0] = "<C></B>Sortowanie bazy danych";
+   message[1] = " ";
+   message[2] = " ";
+   message[3] = "<C>Aby posortowac plyty wybierz pole, ";
+   message[4] = "<C>wedlug ktorego chcesz przeprowadzic sortowanie";
+	message[5] = " ";
+	message[6] = " ";
+   /* Create the dialog box. */
+   question = newCDKDialog (cdkscreen,
+			    CDKparamValue (&params, 'X', CENTER),
+			    CDKparamValue (&params, 'Y', CENTER),
+			    (CDK_CSTRING2) message, 7,
+			    (CDK_CSTRING2) buttons, 5,
+			    COLOR_PAIR (2) | A_REVERSE,
+			    TRUE,
+			    CDKparamValue (&params, 'N', TRUE),
+			    CDKparamValue (&params, 'S', FALSE));
+
+   /* Check if we got a null value back. */
+   if (question == 0)
+   {
+      /* Shut down Cdk. */
+		endwin();
+		eraseCDKScreen(ekran);
+
+      printf ("Za male okno terminala\n");
+      return 0;
+   }
+
+   /* Activate the dialog box. */
+   *wybor = activateCDKDialog (question, 0);
+
+   /* Tell them what was selected. */
+   
+
+   /* Clean up. */
+   destroyCDKDialog (question);
+   endwin();
+   eraseCDKScreen(ekran);
+   return 0;
+   
+}
+int dialog_4 (CDKSCREEN *ekran,int argc, char **argv, int *wybor)
+{
+   /* *INDENT-EQLS* */
+   CDKSCREEN *cdkscreen = 0;
+   CDKDIALOG *question  = 0;
+   const char *buttons[] =
+   {"</B16>Malejaco","</B16>Rosnaco"};
+   const char *message[10];
+   const char *mesg[3];
+   char temp[100];
+   
+   CDK_PARAMS params;
+
+   CDKparseParams (argc, argv, &params, CDK_MIN_PARAMS);
+
+   cdkscreen = ekran;
+
+	curs_set(0);
+   /* Create the message within the dialog box. */
+   message[0] = "<C></B>Sortowanie bazy danych";
+   message[1] = " ";
+   message[2] = " ";
+   message[3] = "<C>Wybierz w jaki sposob chcesz posortowac plyty";
+   message[4] = "<C>";
+	message[5] = " ";
+	message[6] = " ";
+   /* Create the dialog box. */
+   question = newCDKDialog (cdkscreen,
+			    CDKparamValue (&params, 'X', CENTER),
+			    CDKparamValue (&params, 'Y', CENTER),
+			    (CDK_CSTRING2) message, 7,
+			    (CDK_CSTRING2) buttons, 2,
+			    COLOR_PAIR (2) | A_REVERSE,
+			    TRUE,
+			    CDKparamValue (&params, 'N', TRUE),
+			    CDKparamValue (&params, 'S', FALSE));
+
+   /* Check if we got a null value back. */
+   if (question == 0)
+   {
+      /* Shut down Cdk. */
+		endwin();
+		eraseCDKScreen(ekran);
+
+      printf ("Za male okno terminala\n");
+      return 0;
+   }
+
+   /* Activate the dialog box. */
+   *wybor = activateCDKDialog (question, 0);
+
+   /* Tell them what was selected. */
+   
+
+   /* Clean up. */
+   destroyCDKDialog (question);
+   endwin();
+   eraseCDKScreen(ekran);
+   return 0;
+   
+}
+char *pobor_danych (CDKSCREEN *ekran,const char *title, char *info)
 {
      /* *INDENT-EQLS* */
    CDKSCREEN *cdkscreen = 0;
    CDKMENTRY *widget    = 0;
    const char *label    = "</R>:";
-   
-
-  
-
-   cdkscreen = initCDKScreen (NULL);
-
-   /* Start CDK Colors. */
-   initCDKColor ();
-
-   /* Set up the multi-line entry field. */
+ 
+	//CURSES SETUP
+   cdkscreen = ekran;
    widget = newCDKMentry (cdkscreen,
 			  CENTER,
 			  CENTER,
@@ -938,33 +1067,23 @@ char *pobor_danych (const char *title, char *info)
    /* Is the object null? */
    if (widget == 0)
    {
-      /* Shut down CDK. */
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+	endwin();
+	eraseCDKScreen(ekran);
 
-      printf ("Za male okno terminala\n");
+	printf ("Za male okno terminala\n");
       
    }
 
-   /* Draw the CDK screen. */
    refreshCDKScreen (cdkscreen);
 
-   /* Set what ever was given from the command line. */
-   //setCDKMentry (widget, argv[optind], 0, TRUE);
-
-   /* Activate this thing. */
    activateCDKMentry (widget, 0);
    info = strdup (widget->info);
 
    /* Clean up. */
-   destroyCDKMentry (widget);
-   destroyCDKScreen (cdkscreen);
-   endCDK ();
+	destroyCDKMentry (widget);
+	endwin();
+	eraseCDKScreen(ekran);
 
-   printf ("\n\n\n");
-   printf ("Your message was : <%s>\n", info);
-  
-  
    return info;
 }
 
@@ -980,11 +1099,12 @@ WskaznikNaElement usuniecieElementu(WskaznikNaElement pierwszy_album, char *tytu
 	char tymczasowy_artysta[ROZMIAR];
 	do
 		{
-		
         if( !strcmp(biezacy_album->tytul,tytul_do_usuniecia))
         	{
         	if(biezacy_album==pierwszy_album) pierwszy_album = biezacy_album->nastepny_album;
+        	
         	else poprzedniElement->nastepny_album = biezacy_album->nastepny_album;
+        	
         	strncpy(tymczasowy_artysta,biezacy_album->artysta,sizeof(*biezacy_album->artysta));
         	free(biezacy_album->artysta);
         	free(biezacy_album->gatunek);
@@ -1166,7 +1286,7 @@ WskaznikNaElement wyszukanieElementu(WskaznikNaElement pierwszy_album, char *tyt
 
 
 
-char *wybor_pliku (char *nazwa_pliku)
+char *wybor_pliku (CDKSCREEN *ekran,char *nazwa_pliku)
 {
 	CDKSCREEN *cdkscreen = 0;
 	
@@ -1187,7 +1307,7 @@ char *wybor_pliku (char *nazwa_pliku)
    button[0] = "</5><OK><!5>";
    button[1] = "</5><Wyjdz><!5>";
 
-   cdkscreen = initCDKScreen (NULL);
+   cdkscreen = ekran;
 
    
    initCDKColor ();
@@ -1205,8 +1325,9 @@ char *wybor_pliku (char *nazwa_pliku)
 
    if (fSelect == 0)
    {
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+      //destroyCDKScreen (cdkscreen);
+      endwin();
+		eraseCDKScreen(ekran);
 
       fprintf (stderr, "Nie udalo sie stworzyc funkcji\n");
       return NULL;
@@ -1225,8 +1346,8 @@ char *wybor_pliku (char *nazwa_pliku)
      
     
       destroyCDKFselect (fSelect);
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+      endwin();
+   eraseCDKScreen(ekran);
 
       return NULL;
    }
@@ -1240,8 +1361,8 @@ char *wybor_pliku (char *nazwa_pliku)
    {
       /* wyjscie */
       destroyCDKFselect (fSelect);
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+      endwin();
+   eraseCDKScreen(ekran);
 
       printf ("Za male okno?\n");
       return NULL;
@@ -1254,8 +1375,8 @@ char *wybor_pliku (char *nazwa_pliku)
       filename = copyChar (filename);
 
       destroyCDKFselect (fSelect);
-      destroyCDKScreen (cdkscreen);
-      endCDK ();
+      endwin();
+   eraseCDKScreen(ekran);
 
       printf ("Nie udalo sie otworzyc \"%s\"\n", filename);
 
@@ -1286,8 +1407,8 @@ char *wybor_pliku (char *nazwa_pliku)
    
    /* Czyszczenie */
    destroyCDKViewer (example);
-   destroyCDKScreen (cdkscreen);
-   endCDK ();
+  endwin();
+   eraseCDKScreen(ekran);
    
    return nazwa_pliku;
 }
@@ -1384,7 +1505,213 @@ int zapis_do_pliku(WskaznikNaElement pierwszy_album)
     	return 0;
     	
    }
+
+int sortowanie(CDKSCREEN *ekran,WskaznikNaElement pierwszy_album, int wybor1, int wybor2)
+	{
+		WINDOW *pad;
+		CDKLABEL *info;
+		int mypadpos = 0, ch;
+		int l_elementow=pierwszy_album->id, i=0;
+		int mrow, mcol=70, rowcount =100;
+		int argc=4;
+		WskaznikNaElement konwertowany=pierwszy_album;
+		struct Element tablica_struktur[l_elementow];  //tablica VLA struktur
+		const char *tekst[3]={"strzalka w dol - przewijanie listy w dol                                 ",
+						"strzalka w gore - przewijanie listy w gore                                ",
+						"F5 - wyjscie do menu glownego                                            "};
 		
+		//konwersja listy do tablicy
+		for(i=0; i<l_elementow; i++)
+			{
+				tablica_struktur[i]=*konwertowany;
+				pierwszy_album=pierwszy_album->nastepny_album;
+				konwertowany=pierwszy_album;
+			}
+		
+		if (wybor1==0) 
+		{
+			 if (wybor2==0) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Rsortuj_tytul);
+			 else if (wybor2==1) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Msortuj_tytul);
+		}
+		else if (wybor1==1) 
+		{
+			if (wybor2==0) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Rsortuj_artysta);
+			else if (wybor2==1) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Msortuj_artysta);
+		}
+		else if (wybor1==2) 
+		{
+			if (wybor2==0) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Rsortuj_gatunek);
+			else if (wybor2==1) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Msortuj_gatunek);
+		}
+		else if (wybor1==3) 
+		{
+			if (wybor2==0) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Rsortuj_rok);
+			else if (wybor2==1) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Msortuj_rok);		 
+		}	
+		else if (wybor1==4) 
+		{
+			if (wybor2==0) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Rsortuj_l_utworow);
+			else if (wybor2==1) qsort(tablica_struktur,l_elementow, sizeof(struct Element),Msortuj_l_utworow);		 
+		}
+		//CURSES setup
+		keypad(stdscr, TRUE);
+		start_color();
+		getmaxyx(stdscr, mrow, mcol);
+		curs_set(0);
+		pad = newpad (rowcount + 1, mcol);
+		ekran = initCDKScreen (pad);
+		info = newCDKLabel (ekran, RIGHT, TOP, (CDK_CSTRING2) tekst, 3, TRUE, FALSE);
+		//wyswietlanie posortowania
+		for (i=0;i<l_elementow;i++)
+			{
+				wprintw(pad,"ID: %d\n\n",tablica_struktur[i].id);
+				wprintw(pad,"\nTytul: %s\n", tablica_struktur[i].tytul );
+				wprintw(pad,"Artysta: %s\n", tablica_struktur[i].artysta );
+				wprintw(pad,"Gatunek: %s\n", tablica_struktur[i].gatunek );
+				wprintw(pad,"Rok wydania: %d\n", tablica_struktur[i].rok );
+				wprintw(pad,"Liczba utworow na plycie: %d\n\n", tablica_struktur[i].l_utworow );
+			}
+		
+		prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+		refreshCDKScreen (ekran);
+		
+		 
+		// MENU  
+		  while((ch = getch()) != KEY_F(5))
+		  {
+			switch (ch)
+			{
+				case KEY_UP:
+				
+				if (mypadpos >= 0)
+						{
+							mypadpos-=8;
+						}
+				prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+				refreshCDKScreen (ekran);
+				break;
+				
+				
+				case KEY_DOWN:
+				
+			
+				if (mypadpos <= rowcount+1)
+						{
+							mypadpos+=8;
+						}
+				prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+				refreshCDKScreen (ekran);
+				break;
+				
+				default:
+				prefresh(pad, mypadpos, 0, 0, 0, 50, mcol);
+				refreshCDKScreen (ekran);
+				break;
+			 }
+		  }
+		
+		delwin(pad);
+		destroyCDKLabel (info);
+		destroyCDKScreen (ekran);
+		clear();
+		endwin();
+		return 0;		
+	}
+///FUNKCJE DO QSORT	r-rosnaco m-malejaco
 
 
+int Msortuj_rok(const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	
+	if (el1->rok<el2->rok) return -1;
+	else if (el1->rok==el2->rok)
+	return 0;
+	else
+	return 1;
+	}
+int Msortuj_l_utworow(const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+
+	if (el1->l_utworow<el2->l_utworow) return -1;
+	else if (el1->l_utworow==el2->l_utworow)
+	return 0;
+	else
+	return 1;
+	}
+
+int Msortuj_tytul (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	return strcmp(el1->tytul,el2->tytul);
+	return 0;
+	}
+
+int Msortuj_artysta (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	return strcmp(el1->artysta,el2->artysta);
+	return 0;
+	}
+	
+int Msortuj_gatunek (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	return strcmp(el1->gatunek,el2->gatunek);
+	return 0;
+	}
+	
+	
+int Rsortuj_rok(const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	
+	if (el1->rok<el2->rok) return 1;
+	else if (el1->rok==el2->rok)
+	return 0;
+	else
+	return -1;
+	}
+int Rsortuj_l_utworow(const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+
+	if (el1->l_utworow<el2->l_utworow) return 1;
+	else if (el1->l_utworow==el2->l_utworow)
+	return 0;
+	else
+	return -1;
+	}
+
+int Rsortuj_tytul (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	if (strcmp(el1->tytul,el2->tytul)!=0) return -strcmp(el1->tytul,el2->tytul);
+	else return 0;
+	}
+
+int Rsortuj_artysta (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	if (strcmp(el1->artysta,el2->artysta)!=0) return -strcmp(el1->artysta,el2->artysta);
+	else return 0;
+	}
+	
+int Rsortuj_gatunek (const void * a, const void * b)
+	{
+	const WskaznikNaElement el1=a;
+	const WskaznikNaElement el2=b;
+	if (strcmp(el1->gatunek,el2->gatunek)!=0) return -strcmp(el1->gatunek,el2->gatunek);
+	else return 0;
+	}
 
