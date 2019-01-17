@@ -1,0 +1,136 @@
+\begin{theindex}
+
+  \item {dialog\+\_\+1}
+    \subitem {graficzny.\+c}, \hyperpage{8}
+  \item {dialog\+\_\+2}
+    \subitem {graficzny.\+c}, \hyperpage{9}
+  \item {dialog\+\_\+3}
+    \subitem {graficzny.\+c}, \hyperpage{9}
+  \item {dialog\+\_\+4}
+    \subitem {graficzny.\+c}, \hyperpage{10}
+  \item {dodanie\+\_\+nowego\+\_\+elementu}
+    \subitem {graficzny.\+c}, \hyperpage{10}
+
+  \indexspace
+
+  \item {edycja\+\_\+danych}
+    \subitem {graficzny.\+c}, \hyperpage{11}
+  \item {Element}, \hyperpage{5}
+
+  \indexspace
+
+  \item {forma\+\_\+dodawanie\+\_\+elementu}
+    \subitem {graficzny.\+c}, \hyperpage{11}
+  \item {forma\+\_\+edycja\+\_\+elementu}
+    \subitem {graficzny.\+c}, \hyperpage{12}
+
+  \indexspace
+
+  \item {graficzny.\+c}, \hyperpage{7}
+    \subitem {dialog\+\_\+1}, \hyperpage{8}
+    \subitem {dialog\+\_\+2}, \hyperpage{9}
+    \subitem {dialog\+\_\+3}, \hyperpage{9}
+    \subitem {dialog\+\_\+4}, \hyperpage{10}
+    \subitem {dodanie\+\_\+nowego\+\_\+elementu}, \hyperpage{10}
+    \subitem {edycja\+\_\+danych}, \hyperpage{11}
+    \subitem {forma\+\_\+dodawanie\+\_\+elementu}, \hyperpage{11}
+    \subitem {forma\+\_\+edycja\+\_\+elementu}, \hyperpage{12}
+    \subitem {main}, \hyperpage{12}
+    \subitem {menu}, \hyperpage{13}
+    \subitem {pobor\+\_\+danych}, \hyperpage{13}
+    \subitem {trim}, \hyperpage{14}
+    \subitem {usuniecie\+\_\+elementu}, \hyperpage{14}
+    \subitem {wczytanie\+\_\+do\+\_\+struktury}, \hyperpage{14}
+    \subitem {wybor\+\_\+pliku}, \hyperpage{15}
+    \subitem {wyswietlenie\+\_\+calosci}, \hyperpage{15}
+    \subitem {wyswietlenie\+\_\+wyszukania}, \hyperpage{16}
+    \subitem {wyszukanie\+\_\+elementu}, \hyperpage{16}
+    \subitem {wyszukanie\+\_\+elementu\+\_\+edycja}, \hyperpage{17}
+    \subitem {zapis\+\_\+do\+\_\+pliku}, \hyperpage{17}
+    \subitem {zwolnienie\+\_\+pamieci}, \hyperpage{18}
+
+  \indexspace
+
+  \item {main}
+    \subitem {graficzny.\+c}, \hyperpage{12}
+  \item {menu}
+    \subitem {graficzny.\+c}, \hyperpage{13}
+  \item {Msortuj\+\_\+artysta}
+    \subitem {sortowanie.\+c}, \hyperpage{19}
+  \item {Msortuj\+\_\+gatunek}
+    \subitem {sortowanie.\+c}, \hyperpage{19}
+  \item {Msortuj\+\_\+l\+\_\+utworow}
+    \subitem {sortowanie.\+c}, \hyperpage{20}
+  \item {Msortuj\+\_\+rok}
+    \subitem {sortowanie.\+c}, \hyperpage{20}
+  \item {Msortuj\+\_\+tytul}
+    \subitem {sortowanie.\+c}, \hyperpage{21}
+
+  \indexspace
+
+  \item {pobor\+\_\+danych}
+    \subitem {graficzny.\+c}, \hyperpage{13}
+
+  \indexspace
+
+  \item {Rsortuj\+\_\+artysta}
+    \subitem {sortowanie.\+c}, \hyperpage{21}
+  \item {Rsortuj\+\_\+gatunek}
+    \subitem {sortowanie.\+c}, \hyperpage{22}
+  \item {Rsortuj\+\_\+l\+\_\+utworow}
+    \subitem {sortowanie.\+c}, \hyperpage{22}
+  \item {Rsortuj\+\_\+rok}
+    \subitem {sortowanie.\+c}, \hyperpage{22}
+  \item {Rsortuj\+\_\+tytul}
+    \subitem {sortowanie.\+c}, \hyperpage{23}
+
+  \indexspace
+
+  \item {sortowanie}
+    \subitem {sortowanie.\+c}, \hyperpage{23}
+  \item {sortowanie.\+c}, \hyperpage{18}
+    \subitem {Msortuj\+\_\+artysta}, \hyperpage{19}
+    \subitem {Msortuj\+\_\+gatunek}, \hyperpage{19}
+    \subitem {Msortuj\+\_\+l\+\_\+utworow}, \hyperpage{20}
+    \subitem {Msortuj\+\_\+rok}, \hyperpage{20}
+    \subitem {Msortuj\+\_\+tytul}, \hyperpage{21}
+    \subitem {Rsortuj\+\_\+artysta}, \hyperpage{21}
+    \subitem {Rsortuj\+\_\+gatunek}, \hyperpage{22}
+    \subitem {Rsortuj\+\_\+l\+\_\+utworow}, \hyperpage{22}
+    \subitem {Rsortuj\+\_\+rok}, \hyperpage{22}
+    \subitem {Rsortuj\+\_\+tytul}, \hyperpage{23}
+    \subitem {sortowanie}, \hyperpage{23}
+
+  \indexspace
+
+  \item {trim}
+    \subitem {graficzny.\+c}, \hyperpage{14}
+
+  \indexspace
+
+  \item {usuniecie\+\_\+elementu}
+    \subitem {graficzny.\+c}, \hyperpage{14}
+
+  \indexspace
+
+  \item {wczytanie\+\_\+do\+\_\+struktury}
+    \subitem {graficzny.\+c}, \hyperpage{14}
+  \item {wybor\+\_\+pliku}
+    \subitem {graficzny.\+c}, \hyperpage{15}
+  \item {wyswietlenie\+\_\+calosci}
+    \subitem {graficzny.\+c}, \hyperpage{15}
+  \item {wyswietlenie\+\_\+wyszukania}
+    \subitem {graficzny.\+c}, \hyperpage{16}
+  \item {wyszukanie\+\_\+elementu}
+    \subitem {graficzny.\+c}, \hyperpage{16}
+  \item {wyszukanie\+\_\+elementu\+\_\+edycja}
+    \subitem {graficzny.\+c}, \hyperpage{17}
+
+  \indexspace
+
+  \item {zapis\+\_\+do\+\_\+pliku}
+    \subitem {graficzny.\+c}, \hyperpage{17}
+  \item {zwolnienie\+\_\+pamieci}
+    \subitem {graficzny.\+c}, \hyperpage{18}
+
+\end{theindex}

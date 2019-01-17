@@ -1,0 +1,224 @@
+\hypertarget{ulomny__terminalowy__slabiak_8c}{}\section{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c File Reference}
+\label{ulomny__terminalowy__slabiak_8c}\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_element}{Element}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ulomny__terminalowy__slabiak_8c_a97d832ae23af4f215e801e37e4f94254}{K}~10000
+\item 
+\#define \hyperlink{ulomny__terminalowy__slabiak_8c_aa50aa866c5823769bb02e986d29a0589}{R\+O\+Z\+M\+I\+AR}~20
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_element}{Element} $\ast$ \hyperlink{ulomny__terminalowy__slabiak_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309}{Bool} \{ \hyperlink{graficzny_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}{F\+A\+L\+SZ}, 
+\hyperlink{graficzny_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}{P\+R\+A\+W\+DA}, 
+\hyperlink{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}{F\+A\+L\+SZ}, 
+\hyperlink{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}{P\+R\+A\+W\+DA}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} \hyperlink{ulomny__terminalowy__slabiak_8c_a53d2db6844e3e1565a5b4c488f8a7f4d}{dodanie\+Nowego\+Elementu} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$, char $\ast$, char $\ast$, int, int)
+\item 
+\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} \hyperlink{ulomny__terminalowy__slabiak_8c_ae19bd1dc1ba063ed6cfd238f17ff0cae}{usuniecie\+Elementu} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$)
+\item 
+\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} \hyperlink{ulomny__terminalowy__slabiak_8c_af075a28e9eef9a56e6f88ed1bce8f397}{zwolnienie\+Pamieci} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_ad176e8081ae1c551e900667d993bcb15}{wyswietlenie\+Elementow} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\item 
+\hyperlink{graficzny_8c_a39db6982619d623273fad8a383489309}{Bool} \hyperlink{ulomny__terminalowy__slabiak_8c_a82d59f44c504f1d4d2c75df7f8f0e94a}{czy\+Lista\+Jest\+Pusta} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_a298ef5a9944932879ee24adc184a7ee5}{wyswietlenie\+Menu\+Uzytkownika\+\_\+1} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_a6d632f9312488e2f5cd49a462ff85ebe}{wyswietlenie\+Menu\+Uzytkownika\+\_\+2} (void)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_a2bcc9535ecba8a818d8c3641f7a6f261}{wyswietlenie\+Menu\+Uzytkownika\+\_\+3} (void)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_a7b184a88234ac7ad8e7351436c3b28d6}{wyswietlenie\+Menu\+Uzytkownika\+\_\+4} (void)
+\item 
+char \hyperlink{ulomny__terminalowy__slabiak_8c_acf26bfbf57a3465b653e2f7a38de0b55}{odczyt\+Wyboru\+Menu\+Uzytkownika} (void)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_a845dfadde57da52da6eeffa8eaad9b39}{odczyt\+\_\+lancucha} (char $\ast$, char $\ast$)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_ac9a75971230ca3e70da3fcadf0a550f6}{odczyt\+\_\+inta} (char $\ast$, int $\ast$)
+\item 
+long int \hyperlink{ulomny__terminalowy__slabiak_8c_aef8fb1528c0221a50725276ce3927dfd}{spri} (char $\ast$, int $\ast$)
+\item 
+void \hyperlink{ulomny__terminalowy__slabiak_8c_ae294384d0ec12bb870c0e2ce20d3f38e}{edycja\+Danych} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$, int)
+\item 
+\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} \hyperlink{ulomny__terminalowy__slabiak_8c_ae95e5da6139c7897b7d63d10afcfed67}{wyszukanie\+Elementu\+\_\+edycja} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$, int)
+\item 
+\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} \hyperlink{ulomny__terminalowy__slabiak_8c_a70ca66d0ae7fc776d70c1af3fcaf34eb}{wyszukanie\+Elementu} (\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$, char $\ast$, char $\ast$, int, int, int)
+\item 
+int \hyperlink{ulomny__terminalowy__slabiak_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a97d832ae23af4f215e801e37e4f94254}\label{ulomny__terminalowy__slabiak_8c_a97d832ae23af4f215e801e37e4f94254}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!K@{K}}
+\index{K@{K}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{K}{K}}
+{\footnotesize\ttfamily \#define K~10000}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_aa50aa866c5823769bb02e986d29a0589}\label{ulomny__terminalowy__slabiak_8c_aa50aa866c5823769bb02e986d29a0589}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!R\+O\+Z\+M\+I\+AR@{R\+O\+Z\+M\+I\+AR}}
+\index{R\+O\+Z\+M\+I\+AR@{R\+O\+Z\+M\+I\+AR}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{R\+O\+Z\+M\+I\+AR}{ROZMIAR}}
+{\footnotesize\ttfamily \#define R\+O\+Z\+M\+I\+AR~20}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ad96986a0560d34f5d5578947c5c1e24f}\label{ulomny__terminalowy__slabiak_8c_ad96986a0560d34f5d5578947c5c1e24f}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!Wskaznik\+Na\+Element@{Wskaznik\+Na\+Element}}
+\index{Wskaznik\+Na\+Element@{Wskaznik\+Na\+Element}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{Wskaznik\+Na\+Element}{WskaznikNaElement}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_element}{Element}$\ast$ \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309}\label{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!Bool@{Bool}}
+\index{Bool@{Bool}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{Bool}{Bool}}
+{\footnotesize\ttfamily enum \hyperlink{graficzny_8c_a39db6982619d623273fad8a383489309}{Bool}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+A\+L\+SZ@{F\+A\+L\+SZ}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!F\+A\+L\+SZ@{F\+A\+L\+SZ}}}\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}\label{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}} 
+F\+A\+L\+SZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+A\+W\+DA@{P\+R\+A\+W\+DA}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!P\+R\+A\+W\+DA@{P\+R\+A\+W\+DA}}}\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}\label{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}} 
+P\+R\+A\+W\+DA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+A\+L\+SZ@{F\+A\+L\+SZ}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!F\+A\+L\+SZ@{F\+A\+L\+SZ}}}\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}\label{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309a564e0951fb8fd95234599755197278d1}} 
+F\+A\+L\+SZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+A\+W\+DA@{P\+R\+A\+W\+DA}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!P\+R\+A\+W\+DA@{P\+R\+A\+W\+DA}}}\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}\label{ulomny__terminalowy__slabiak_8c_a39db6982619d623273fad8a383489309adb4c5817ad837a784d6656d578aa81ac}} 
+P\+R\+A\+W\+DA&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a82d59f44c504f1d4d2c75df7f8f0e94a}\label{ulomny__terminalowy__slabiak_8c_a82d59f44c504f1d4d2c75df7f8f0e94a}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!czy\+Lista\+Jest\+Pusta@{czy\+Lista\+Jest\+Pusta}}
+\index{czy\+Lista\+Jest\+Pusta@{czy\+Lista\+Jest\+Pusta}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{czy\+Lista\+Jest\+Pusta()}{czyListaJestPusta()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_a39db6982619d623273fad8a383489309}{Bool} czy\+Lista\+Jest\+Pusta (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a53d2db6844e3e1565a5b4c488f8a7f4d}\label{ulomny__terminalowy__slabiak_8c_a53d2db6844e3e1565a5b4c488f8a7f4d}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!dodanie\+Nowego\+Elementu@{dodanie\+Nowego\+Elementu}}
+\index{dodanie\+Nowego\+Elementu@{dodanie\+Nowego\+Elementu}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{dodanie\+Nowego\+Elementu()}{dodanieNowegoElementu()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} dodanie\+Nowego\+Elementu (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{t,  }\item[{char $\ast$}]{a,  }\item[{char $\ast$}]{g,  }\item[{int}]{r,  }\item[{int}]{l }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ae294384d0ec12bb870c0e2ce20d3f38e}\label{ulomny__terminalowy__slabiak_8c_ae294384d0ec12bb870c0e2ce20d3f38e}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!edycja\+Danych@{edycja\+Danych}}
+\index{edycja\+Danych@{edycja\+Danych}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{edycja\+Danych()}{edycjaDanych()}}
+{\footnotesize\ttfamily void edycja\+Danych (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{ulomny__terminalowy__slabiak_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!main@{main}}
+\index{main@{main}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+developer option \mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ac9a75971230ca3e70da3fcadf0a550f6}\label{ulomny__terminalowy__slabiak_8c_ac9a75971230ca3e70da3fcadf0a550f6}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!odczyt\+\_\+inta@{odczyt\+\_\+inta}}
+\index{odczyt\+\_\+inta@{odczyt\+\_\+inta}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{odczyt\+\_\+inta()}{odczyt\_inta()}}
+{\footnotesize\ttfamily void odczyt\+\_\+inta (\begin{DoxyParamCaption}\item[{char $\ast$}]{tekst\+Komunikatu,  }\item[{int $\ast$}]{adres\+\_\+inta }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a845dfadde57da52da6eeffa8eaad9b39}\label{ulomny__terminalowy__slabiak_8c_a845dfadde57da52da6eeffa8eaad9b39}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!odczyt\+\_\+lancucha@{odczyt\+\_\+lancucha}}
+\index{odczyt\+\_\+lancucha@{odczyt\+\_\+lancucha}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{odczyt\+\_\+lancucha()}{odczyt\_lancucha()}}
+{\footnotesize\ttfamily void odczyt\+\_\+lancucha (\begin{DoxyParamCaption}\item[{char $\ast$}]{tekst\+Komunikatu,  }\item[{char $\ast$}]{lancuch }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_acf26bfbf57a3465b653e2f7a38de0b55}\label{ulomny__terminalowy__slabiak_8c_acf26bfbf57a3465b653e2f7a38de0b55}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!odczyt\+Wyboru\+Menu\+Uzytkownika@{odczyt\+Wyboru\+Menu\+Uzytkownika}}
+\index{odczyt\+Wyboru\+Menu\+Uzytkownika@{odczyt\+Wyboru\+Menu\+Uzytkownika}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{odczyt\+Wyboru\+Menu\+Uzytkownika()}{odczytWyboruMenuUzytkownika()}}
+{\footnotesize\ttfamily char odczyt\+Wyboru\+Menu\+Uzytkownika (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_aef8fb1528c0221a50725276ce3927dfd}\label{ulomny__terminalowy__slabiak_8c_aef8fb1528c0221a50725276ce3927dfd}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!spri@{spri}}
+\index{spri@{spri}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{spri()}{spri()}}
+{\footnotesize\ttfamily long int spri (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int $\ast$}]{powtorz\+\_\+input }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ae19bd1dc1ba063ed6cfd238f17ff0cae}\label{ulomny__terminalowy__slabiak_8c_ae19bd1dc1ba063ed6cfd238f17ff0cae}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!usuniecie\+Elementu@{usuniecie\+Elementu}}
+\index{usuniecie\+Elementu@{usuniecie\+Elementu}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{usuniecie\+Elementu()}{usuniecieElementu()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} usuniecie\+Elementu (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+usuniecia }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ad176e8081ae1c551e900667d993bcb15}\label{ulomny__terminalowy__slabiak_8c_ad176e8081ae1c551e900667d993bcb15}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyswietlenie\+Elementow@{wyswietlenie\+Elementow}}
+\index{wyswietlenie\+Elementow@{wyswietlenie\+Elementow}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+Elementow()}{wyswietlenieElementow()}}
+{\footnotesize\ttfamily void wyswietlenie\+Elementow (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a298ef5a9944932879ee24adc184a7ee5}\label{ulomny__terminalowy__slabiak_8c_a298ef5a9944932879ee24adc184a7ee5}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyswietlenie\+Menu\+Uzytkownika\+\_\+1@{wyswietlenie\+Menu\+Uzytkownika\+\_\+1}}
+\index{wyswietlenie\+Menu\+Uzytkownika\+\_\+1@{wyswietlenie\+Menu\+Uzytkownika\+\_\+1}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+Menu\+Uzytkownika\+\_\+1()}{wyswietlenieMenuUzytkownika\_1()}}
+{\footnotesize\ttfamily void wyswietlenie\+Menu\+Uzytkownika\+\_\+1 (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a6d632f9312488e2f5cd49a462ff85ebe}\label{ulomny__terminalowy__slabiak_8c_a6d632f9312488e2f5cd49a462ff85ebe}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyswietlenie\+Menu\+Uzytkownika\+\_\+2@{wyswietlenie\+Menu\+Uzytkownika\+\_\+2}}
+\index{wyswietlenie\+Menu\+Uzytkownika\+\_\+2@{wyswietlenie\+Menu\+Uzytkownika\+\_\+2}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+Menu\+Uzytkownika\+\_\+2()}{wyswietlenieMenuUzytkownika\_2()}}
+{\footnotesize\ttfamily void wyswietlenie\+Menu\+Uzytkownika\+\_\+2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a2bcc9535ecba8a818d8c3641f7a6f261}\label{ulomny__terminalowy__slabiak_8c_a2bcc9535ecba8a818d8c3641f7a6f261}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyswietlenie\+Menu\+Uzytkownika\+\_\+3@{wyswietlenie\+Menu\+Uzytkownika\+\_\+3}}
+\index{wyswietlenie\+Menu\+Uzytkownika\+\_\+3@{wyswietlenie\+Menu\+Uzytkownika\+\_\+3}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+Menu\+Uzytkownika\+\_\+3()}{wyswietlenieMenuUzytkownika\_3()}}
+{\footnotesize\ttfamily void wyswietlenie\+Menu\+Uzytkownika\+\_\+3 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a7b184a88234ac7ad8e7351436c3b28d6}\label{ulomny__terminalowy__slabiak_8c_a7b184a88234ac7ad8e7351436c3b28d6}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyswietlenie\+Menu\+Uzytkownika\+\_\+4@{wyswietlenie\+Menu\+Uzytkownika\+\_\+4}}
+\index{wyswietlenie\+Menu\+Uzytkownika\+\_\+4@{wyswietlenie\+Menu\+Uzytkownika\+\_\+4}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+Menu\+Uzytkownika\+\_\+4()}{wyswietlenieMenuUzytkownika\_4()}}
+{\footnotesize\ttfamily void wyswietlenie\+Menu\+Uzytkownika\+\_\+4 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_a70ca66d0ae7fc776d70c1af3fcaf34eb}\label{ulomny__terminalowy__slabiak_8c_a70ca66d0ae7fc776d70c1af3fcaf34eb}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyszukanie\+Elementu@{wyszukanie\+Elementu}}
+\index{wyszukanie\+Elementu@{wyszukanie\+Elementu}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyszukanie\+Elementu()}{wyszukanieElementu()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} wyszukanie\+Elementu (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{char $\ast$}]{artysta\+\_\+do\+\_\+wyszukania,  }\item[{char $\ast$}]{gatunek\+\_\+do\+\_\+wyszukania,  }\item[{int}]{rok\+\_\+do\+\_\+wyszukania,  }\item[{int}]{l\+\_\+utworow\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_ae95e5da6139c7897b7d63d10afcfed67}\label{ulomny__terminalowy__slabiak_8c_ae95e5da6139c7897b7d63d10afcfed67}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!wyszukanie\+Elementu\+\_\+edycja@{wyszukanie\+Elementu\+\_\+edycja}}
+\index{wyszukanie\+Elementu\+\_\+edycja@{wyszukanie\+Elementu\+\_\+edycja}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{wyszukanie\+Elementu\+\_\+edycja()}{wyszukanieElementu\_edycja()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} wyszukanie\+Elementu\+\_\+edycja (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ulomny__terminalowy__slabiak_8c_af075a28e9eef9a56e6f88ed1bce8f397}\label{ulomny__terminalowy__slabiak_8c_af075a28e9eef9a56e6f88ed1bce8f397}} 
+\index{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}!zwolnienie\+Pamieci@{zwolnienie\+Pamieci}}
+\index{zwolnienie\+Pamieci@{zwolnienie\+Pamieci}!ulomny\+\_\+terminalowy\+\_\+slabiak.\+c@{ulomny\+\_\+terminalowy\+\_\+slabiak.\+c}}
+\subsubsection{\texorpdfstring{zwolnienie\+Pamieci()}{zwolnieniePamieci()}}
+{\footnotesize\ttfamily \hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element} zwolnienie\+Pamieci (\begin{DoxyParamCaption}\item[{\hyperlink{graficzny_8c_ad96986a0560d34f5d5578947c5c1e24f}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+

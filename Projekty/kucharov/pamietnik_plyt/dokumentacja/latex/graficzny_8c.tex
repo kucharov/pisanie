@@ -1,0 +1,547 @@
+\hypertarget{graficzny_8c}{}\section{graficzny.\+c File Reference}
+\label{graficzny_8c}\index{graficzny.\+c@{graficzny.\+c}}
+
+
+Plik z glownymi funkcjami programu PP.  
+
+
+{\ttfamily \#include \char`\"{}graficzny.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{graficzny_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Funkcja main -\/ jadro programu. \end{DoxyCompactList}\item 
+void \hyperlink{graficzny_8c_a62654744e5007f5be9003f1c817ac4ed}{menu} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, W\+I\+N\+D\+OW $\ast$okno, int $\ast$wybrany)
+\begin{DoxyCompactList}\small\item\em Funkcja odpowiadajaca za graficzne menu uzytkownika. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{graficzny_8c_acf86d11d1ee2034e2baf52e8d077d9f7}{trim} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Funkcja \char`\"{}przycina\char`\"{} spacje ktorymi uzupelniane sa lancuchy danych. Potrzebna by poprawnie procesowac dane wprowadzane w formy przy dodawaniu i edycji plyt. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_a6edef0f8742f5f3ccfe507ae1f6328a8}{forma\+\_\+dodawanie\+\_\+elementu} (char $\ast$temp\+\_\+tytul, char $\ast$temp\+\_\+artysta, char $\ast$temp\+\_\+gatunek, int $\ast$temp\+\_\+rok, int $\ast$temp\+\_\+l\+\_\+utworow)
+\begin{DoxyCompactList}\small\item\em Funkcja pobierajaca dane o nowej plycie od uzytkownika w celu dodania jej do listy (bazy danych) \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_a32b88699c4cfaaab92e1a0f0c44d6218}{forma\+\_\+edycja\+\_\+elementu} (char $\ast$temp\+\_\+tytul, char $\ast$temp\+\_\+artysta, char $\ast$temp\+\_\+gatunek, int $\ast$temp\+\_\+rok, int $\ast$temp\+\_\+l\+\_\+utworow)
+\begin{DoxyCompactList}\small\item\em Funkcja wyswietlajaca dane edytowanej plyty i pobierajaca nowe dane. \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_a15e309113ecc6e244a5967cd998759a0}{dodanie\+\_\+nowego\+\_\+elementu} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$t, char $\ast$a, char $\ast$g, int r, int l)
+\begin{DoxyCompactList}\small\item\em Funkcja dodajaca element do bazy danych (dodawanie elementu do listy jednokierunkowej) \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_adbdcc55deb49ea0cec9507f9b9252b55}{wyswietlenie\+\_\+calosci} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, \hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\begin{DoxyCompactList}\small\item\em Funkcja wyswietla baze danych. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_aa5d0d4e2ff1927945727afa64e003140}{wyswietlenie\+\_\+wyszukania} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, \hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, int wybor)
+\begin{DoxyCompactList}\small\item\em Funkcja wyswietlajaca wynik wyszukania plyty/plyt przez uzytkownika. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_aed2b75ead915128d13709a45621b9199}{dialog\+\_\+1} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, int argc, char $\ast$$\ast$argv, int $\ast$wybor)
+\begin{DoxyCompactList}\small\item\em Funkcja dialog\+\_\+1 to okno dialogowe -\/ skladowa funkcjonalnosci E\+D\+Y\+C\+JI danych plyty. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_aca02f14c32a6d92d20f00752f3f9fe62}{dialog\+\_\+2} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, int argc, char $\ast$$\ast$argv, int $\ast$wybor)
+\begin{DoxyCompactList}\small\item\em Funkcja dialog\+\_\+2 to okno dialogowe -\/ skladowa funkcjonalnosci W\+Y\+S\+Z\+U\+K\+I\+W\+A\+N\+IA konkretnej plyty. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_aa57c2ef9854d06ec528fc217313ecc22}{dialog\+\_\+3} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, int argc, char $\ast$$\ast$argv, int $\ast$wybor)
+\begin{DoxyCompactList}\small\item\em Funkcja dialog\+\_\+3 to okno dialogowe -\/ skladowa funkcjonalnosci S\+O\+R\+T\+O\+W\+A\+N\+IA bazy danych. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_a4af02cd7c7293a548f7f9b926232e0cd}{dialog\+\_\+4} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, int argc, char $\ast$$\ast$argv, int $\ast$wybor)
+\begin{DoxyCompactList}\small\item\em Funkcja dialog\+\_\+4 to okno dialogowe -\/ skladowa funkcjonalnosci S\+O\+R\+T\+O\+W\+A\+N\+IA bazy danych. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{graficzny_8c_a7fff4311ebed588440f118b4666df049}{pobor\+\_\+danych} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, const char $\ast$title, char $\ast$info)
+\begin{DoxyCompactList}\small\item\em Funkcja pobierajaca lancuch danych od uzytkownika. \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_a546e074e1b23300092c6c14059795c6c}{usuniecie\+\_\+elementu} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$tytul\+\_\+do\+\_\+usuniecia)
+\begin{DoxyCompactList}\small\item\em Funkcja usuwajaca element z bazy danych (usuniecie elementu listy jednokierunkowej) \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_ae2818c21e93db9d6a97bfdf600359c91}{zwolnienie\+\_\+pamieci} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\begin{DoxyCompactList}\small\item\em Funkcja zwalniajaca uprzednio zaalokowana pamiec dla listy jednokierunkowej struktur (plyt) \end{DoxyCompactList}\item 
+void \hyperlink{graficzny_8c_ac93273e800372c3890aaadc682b2fc98}{edycja\+\_\+danych} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$tytul\+\_\+do\+\_\+wyszukania, int id\+\_\+do\+\_\+wyszukania)
+\begin{DoxyCompactList}\small\item\em Funkcja edytujaca dane wyszukanej struktury. \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_a309a58453a41c2b258baf8f49070ebf8}{wyszukanie\+\_\+elementu\+\_\+edycja} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$tytul\+\_\+do\+\_\+wyszukania, int id\+\_\+do\+\_\+wyszukania)
+\begin{DoxyCompactList}\small\item\em Funkcja wyszukujaca element do edycji z listy struktur (plyt) po zadanym przez uzytkownika polu (tytule lub id) \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_a6e1d497b4c181e252ed5f40a0f3be870}{wyszukanie\+\_\+elementu} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$tytul\+\_\+do\+\_\+wyszukania, char $\ast$artysta\+\_\+do\+\_\+wyszukania, char $\ast$gatunek\+\_\+do\+\_\+wyszukania, int rok\+\_\+do\+\_\+wyszukania, int l\+\_\+utworow\+\_\+do\+\_\+wyszukania, int id\+\_\+do\+\_\+wyszukania, W\+I\+N\+D\+OW $\ast$pad)
+\begin{DoxyCompactList}\small\item\em Funkcja wyszukujaca element z listy struktur (plyt) po zadanym przez uzytkownika polu. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{graficzny_8c_a5038641ef55b200d48a7d9827b400514}{wybor\+\_\+pliku} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, char $\ast$nazwa\+\_\+pliku)
+\begin{DoxyCompactList}\small\item\em Funkcja umozliwiajaca wybor pliku z dysku -\/ skladowa funkcjonalnosci W\+C\+Z\+Y\+T\+Y\+W\+A\+N\+IA bazy danych. \end{DoxyCompactList}\item 
+\hyperlink{struct_element}{Wskaznik\+Na\+Element} \hyperlink{graficzny_8c_a444c114c1770bfa9be82957a14e3a96d}{wczytanie\+\_\+do\+\_\+struktury} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, char $\ast$nazwa\+\_\+pliku)
+\begin{DoxyCompactList}\small\item\em Funkcja umozliwiajaca wczytanie bazy plyt z pliku. \end{DoxyCompactList}\item 
+int \hyperlink{graficzny_8c_a7f29f70b1ad8b945b8842e8ad69114d2}{zapis\+\_\+do\+\_\+pliku} (\hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album)
+\begin{DoxyCompactList}\small\item\em Funkcja umozliwiajaca zapisanie bazy danych z programu do pliku na dysku (do katalogu zrodlowego programu) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Plik z glownymi funkcjami programu PP. 
+
+\begin{DoxyAuthor}{Author}
+Konrad Kucharczyk 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16.\+01.\+2019 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Praca i wlasnosc Konrada Kucharczyka 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{graficzny_8c_aed2b75ead915128d13709a45621b9199}\label{graficzny_8c_aed2b75ead915128d13709a45621b9199}} 
+\index{graficzny.\+c@{graficzny.\+c}!dialog\+\_\+1@{dialog\+\_\+1}}
+\index{dialog\+\_\+1@{dialog\+\_\+1}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{dialog\+\_\+1()}{dialog\_1()}}
+{\footnotesize\ttfamily dialog\+\_\+1 (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{int $\ast$}]{wybor }\end{DoxyParamCaption})}
+
+
+
+Funkcja dialog\+\_\+1 to okno dialogowe -\/ skladowa funkcjonalnosci E\+D\+Y\+C\+JI danych plyty. 
+
+Wyswietla menu i pozwala uzytkownikowi wybrac sposob w jaki ten chce znalezc plyte do edycji 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em argc} & -\/ liczba pobranych argumentow(opcje uruchamiania, nazwa pliku) przy wlaczaniu programu \\
+\hline
+{\em argv} & -\/ tablica lancuchow z wartosciami opcji uruchamiania i nazwa pliku \\
+\hline
+{\em wybor} & -\/ wartosc int mowiaca o wyborze uzytkownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_aca02f14c32a6d92d20f00752f3f9fe62}\label{graficzny_8c_aca02f14c32a6d92d20f00752f3f9fe62}} 
+\index{graficzny.\+c@{graficzny.\+c}!dialog\+\_\+2@{dialog\+\_\+2}}
+\index{dialog\+\_\+2@{dialog\+\_\+2}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{dialog\+\_\+2()}{dialog\_2()}}
+{\footnotesize\ttfamily dialog\+\_\+2 (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{int $\ast$}]{wybor }\end{DoxyParamCaption})}
+
+
+
+Funkcja dialog\+\_\+2 to okno dialogowe -\/ skladowa funkcjonalnosci W\+Y\+S\+Z\+U\+K\+I\+W\+A\+N\+IA konkretnej plyty. 
+
+Wyswietla menu i pozwala uzytkownikowi wybrac sposob w jaki ten chce wyszukiwac plyte/plyty 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em argc} & -\/ liczba pobranych argumentow(opcje uruchamiania, nazwa pliku) przy wlaczaniu programu \\
+\hline
+{\em argv} & -\/ tablica lancuchow z wartosciami opcji uruchamiania i nazwa pliku \\
+\hline
+{\em wybor} & -\/ wartosc int mowiaca o wyborze uzytkownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_aa57c2ef9854d06ec528fc217313ecc22}\label{graficzny_8c_aa57c2ef9854d06ec528fc217313ecc22}} 
+\index{graficzny.\+c@{graficzny.\+c}!dialog\+\_\+3@{dialog\+\_\+3}}
+\index{dialog\+\_\+3@{dialog\+\_\+3}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{dialog\+\_\+3()}{dialog\_3()}}
+{\footnotesize\ttfamily dialog\+\_\+3 (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{int $\ast$}]{wybor }\end{DoxyParamCaption})}
+
+
+
+Funkcja dialog\+\_\+3 to okno dialogowe -\/ skladowa funkcjonalnosci S\+O\+R\+T\+O\+W\+A\+N\+IA bazy danych. 
+
+Wyswietla menu i pozwala uzytkownikowi wybrac dane plyty po ktorej ten chce sortowac baze danych 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em argc} & -\/ liczba pobranych argumentow(opcje uruchamiania, nazwa pliku) przy wlaczaniu programu \\
+\hline
+{\em argv} & -\/ tablica lancuchow z wartosciami opcji uruchamiania i nazwa pliku \\
+\hline
+{\em wybor} & -\/ wartosc int mowiaca o wyborze uzytkownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a4af02cd7c7293a548f7f9b926232e0cd}\label{graficzny_8c_a4af02cd7c7293a548f7f9b926232e0cd}} 
+\index{graficzny.\+c@{graficzny.\+c}!dialog\+\_\+4@{dialog\+\_\+4}}
+\index{dialog\+\_\+4@{dialog\+\_\+4}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{dialog\+\_\+4()}{dialog\_4()}}
+{\footnotesize\ttfamily dialog\+\_\+4 (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{int $\ast$}]{wybor }\end{DoxyParamCaption})}
+
+
+
+Funkcja dialog\+\_\+4 to okno dialogowe -\/ skladowa funkcjonalnosci S\+O\+R\+T\+O\+W\+A\+N\+IA bazy danych. 
+
+Wyswietla menu i pozwala uzytkownikowi wybrac sposob w jaki ten chce sortowac baze danych -\/ malejaco, lub rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em argc} & -\/ liczba pobranych argumentow(opcje uruchamiania, nazwa pliku) przy wlaczaniu programu \\
+\hline
+{\em argv} & -\/ tablica lancuchow z wartosciami opcji uruchamiania i nazwa pliku \\
+\hline
+{\em wybor} & -\/ wartosc int mowiaca o wyborze uzytkownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a15e309113ecc6e244a5967cd998759a0}\label{graficzny_8c_a15e309113ecc6e244a5967cd998759a0}} 
+\index{graficzny.\+c@{graficzny.\+c}!dodanie\+\_\+nowego\+\_\+elementu@{dodanie\+\_\+nowego\+\_\+elementu}}
+\index{dodanie\+\_\+nowego\+\_\+elementu@{dodanie\+\_\+nowego\+\_\+elementu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{dodanie\+\_\+nowego\+\_\+elementu()}{dodanie\_nowego\_elementu()}}
+{\footnotesize\ttfamily dodanie\+\_\+nowego\+\_\+elementu (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{t,  }\item[{char $\ast$}]{a,  }\item[{char $\ast$}]{g,  }\item[{int}]{r,  }\item[{int}]{l }\end{DoxyParamCaption})}
+
+
+
+Funkcja dodajaca element do bazy danych (dodawanie elementu do listy jednokierunkowej) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em t} & -\/ lancuch z tytulem plyty ktora uzytkownik chce dodac \\
+\hline
+{\em a} & -\/ lancuch z artysta plyty ktora uzytkownik chce dodac \\
+\hline
+{\em g} & -\/ lancuch z gatunkiem plyty ktora uzytkownik chce dodac \\
+\hline
+{\em r} & -\/ lancuch z rokiem wydania plyty ktora uzytkownik chce dodac \\
+\hline
+{\em l} & -\/ lancuch z liczba utworow na plycie ktora uzytkownik chce dodac \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_ac93273e800372c3890aaadc682b2fc98}\label{graficzny_8c_ac93273e800372c3890aaadc682b2fc98}} 
+\index{graficzny.\+c@{graficzny.\+c}!edycja\+\_\+danych@{edycja\+\_\+danych}}
+\index{edycja\+\_\+danych@{edycja\+\_\+danych}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{edycja\+\_\+danych()}{edycja\_danych()}}
+{\footnotesize\ttfamily edycja\+\_\+danych (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania }\end{DoxyParamCaption})}
+
+
+
+Funkcja edytujaca dane wyszukanej struktury. 
+
+Funkcja spajaja funkcje wyszukanie\+\_\+elementu\+\_\+do\+\_\+edycji i forma\+\_\+edycja\+\_\+elementu oraz podmieniajaca dane w edytytowanej strukturze (plycie) 
+\begin{DoxyParams}{Parameters}
+{\em tytul\+\_\+do\+\_\+wyszukania} & -\/ lancuch z tytulem plyty/plyt ktora uzytkownik chce wyszukac \\
+\hline
+{\em id\+\_\+do\+\_\+wyszukania} & -\/ wartosc id do wyszukania \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a6edef0f8742f5f3ccfe507ae1f6328a8}\label{graficzny_8c_a6edef0f8742f5f3ccfe507ae1f6328a8}} 
+\index{graficzny.\+c@{graficzny.\+c}!forma\+\_\+dodawanie\+\_\+elementu@{forma\+\_\+dodawanie\+\_\+elementu}}
+\index{forma\+\_\+dodawanie\+\_\+elementu@{forma\+\_\+dodawanie\+\_\+elementu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{forma\+\_\+dodawanie\+\_\+elementu()}{forma\_dodawanie\_elementu()}}
+{\footnotesize\ttfamily forma\+\_\+dodawanie\+\_\+elementu (\begin{DoxyParamCaption}\item[{char $\ast$}]{temp\+\_\+tytul,  }\item[{char $\ast$}]{temp\+\_\+artysta,  }\item[{char $\ast$}]{temp\+\_\+gatunek,  }\item[{int $\ast$}]{temp\+\_\+rok,  }\item[{int $\ast$}]{temp\+\_\+l\+\_\+utworow }\end{DoxyParamCaption})}
+
+
+
+Funkcja pobierajaca dane o nowej plycie od uzytkownika w celu dodania jej do listy (bazy danych) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp\+\_\+tytul} & -\/ lancuch z tytulem plyty/plyt \\
+\hline
+{\em temp\+\_\+artysta} & -\/ lancuch z artysta plyty/plyt \\
+\hline
+{\em temp\+\_\+gatunek} & -\/ lancuch z gatunkiem plyty/plyt \\
+\hline
+{\em temp\+\_\+rok} & -\/ rok wydania \\
+\hline
+{\em temp\+\_\+l\+\_\+utworow} & -\/ liczba utworow \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a32b88699c4cfaaab92e1a0f0c44d6218}\label{graficzny_8c_a32b88699c4cfaaab92e1a0f0c44d6218}} 
+\index{graficzny.\+c@{graficzny.\+c}!forma\+\_\+edycja\+\_\+elementu@{forma\+\_\+edycja\+\_\+elementu}}
+\index{forma\+\_\+edycja\+\_\+elementu@{forma\+\_\+edycja\+\_\+elementu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{forma\+\_\+edycja\+\_\+elementu()}{forma\_edycja\_elementu()}}
+{\footnotesize\ttfamily forma\+\_\+edycja\+\_\+elementu (\begin{DoxyParamCaption}\item[{char $\ast$}]{temp\+\_\+tytul,  }\item[{char $\ast$}]{temp\+\_\+artysta,  }\item[{char $\ast$}]{temp\+\_\+gatunek,  }\item[{int $\ast$}]{temp\+\_\+rok,  }\item[{int $\ast$}]{temp\+\_\+l\+\_\+utworow }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyswietlajaca dane edytowanej plyty i pobierajaca nowe dane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp\+\_\+tytul} & -\/ lancuch z tytulem plyty/plyt \\
+\hline
+{\em temp\+\_\+artysta} & -\/ lancuch z artysta plyty/plyt \\
+\hline
+{\em temp\+\_\+gatunek} & -\/ lancuch z gatunkiem plyty/plyt \\
+\hline
+{\em temp\+\_\+rok} & -\/ rok wydania \\
+\hline
+{\em temp\+\_\+l\+\_\+utworow} & -\/ liczba utworow \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{graficzny_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{graficzny.\+c@{graficzny.\+c}!main@{main}}
+\index{main@{main}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Funkcja main -\/ jadro programu. 
+
+Funkcja spaja wszystkie funkcje programu. Zawiera petle z funkcja menu i instrukcje sterujace. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ liczba pobranych argumentow(opcje uruchamiania, nazwa pliku) przy wlaczaniu programu \\
+\hline
+{\em argv} & -\/ tablica lancuchow z wartosciami opcji uruchamiania i nazwa pliku \\
+\hline
+{\em wybrany} & -\/ wybor opcji menu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a62654744e5007f5be9003f1c817ac4ed}\label{graficzny_8c_a62654744e5007f5be9003f1c817ac4ed}} 
+\index{graficzny.\+c@{graficzny.\+c}!menu@{menu}}
+\index{menu@{menu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void menu (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{W\+I\+N\+D\+OW $\ast$}]{okno,  }\item[{int $\ast$}]{wybrany }\end{DoxyParamCaption})}
+
+
+
+Funkcja odpowiadajaca za graficzne menu uzytkownika. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em okno} & -\/ okno do pracy dla C\+DK \\
+\hline
+{\em wybrany} & -\/ wybor opcji menu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a7fff4311ebed588440f118b4666df049}\label{graficzny_8c_a7fff4311ebed588440f118b4666df049}} 
+\index{graficzny.\+c@{graficzny.\+c}!pobor\+\_\+danych@{pobor\+\_\+danych}}
+\index{pobor\+\_\+danych@{pobor\+\_\+danych}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{pobor\+\_\+danych()}{pobor\_danych()}}
+{\footnotesize\ttfamily pobor\+\_\+danych (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{const char $\ast$}]{title,  }\item[{char $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Funkcja pobierajaca lancuch danych od uzytkownika. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em title} & -\/ lancuch informujacy uzytkownika o jakie dane ten jest proszony \\
+\hline
+{\em info} & -\/ dane wprowadzone \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+info -\/ lancuch wprowadzonych danych 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_acf86d11d1ee2034e2baf52e8d077d9f7}\label{graficzny_8c_acf86d11d1ee2034e2baf52e8d077d9f7}} 
+\index{graficzny.\+c@{graficzny.\+c}!trim@{trim}}
+\index{trim@{trim}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily $\ast$ trim (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Funkcja \char`\"{}przycina\char`\"{} spacje ktorymi uzupelniane sa lancuchy danych. Potrzebna by poprawnie procesowac dane wprowadzane w formy przy dodawaniu i edycji plyt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & -\/ konkretny lancuch, z ktorego chcemy usunac puste spacje na jego koncu, badz poczatku. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}przyciety\char`\"{} lancuch 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a546e074e1b23300092c6c14059795c6c}\label{graficzny_8c_a546e074e1b23300092c6c14059795c6c}} 
+\index{graficzny.\+c@{graficzny.\+c}!usuniecie\+\_\+elementu@{usuniecie\+\_\+elementu}}
+\index{usuniecie\+\_\+elementu@{usuniecie\+\_\+elementu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{usuniecie\+\_\+elementu()}{usuniecie\_elementu()}}
+{\footnotesize\ttfamily usuniecie\+\_\+elementu (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+usuniecia }\end{DoxyParamCaption})}
+
+
+
+Funkcja usuwajaca element z bazy danych (usuniecie elementu listy jednokierunkowej) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em tytul\+\_\+do\+\_\+usuniecia} & -\/ lancuch z tytulem plyty ktora uzytkownik chce usunac \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a444c114c1770bfa9be82957a14e3a96d}\label{graficzny_8c_a444c114c1770bfa9be82957a14e3a96d}} 
+\index{graficzny.\+c@{graficzny.\+c}!wczytanie\+\_\+do\+\_\+struktury@{wczytanie\+\_\+do\+\_\+struktury}}
+\index{wczytanie\+\_\+do\+\_\+struktury@{wczytanie\+\_\+do\+\_\+struktury}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wczytanie\+\_\+do\+\_\+struktury()}{wczytanie\_do\_struktury()}}
+{\footnotesize\ttfamily wczytanie\+\_\+do\+\_\+struktury (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{nazwa\+\_\+pliku }\end{DoxyParamCaption})}
+
+
+
+Funkcja umozliwiajaca wczytanie bazy plyt z pliku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em nazwa\+\_\+pliku} & -\/ adres wybranego pliku na dysku \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}
+Wlasciwe odszukanie pliku
+
+dodawanie struktur \mbox{\Hypertarget{graficzny_8c_a5038641ef55b200d48a7d9827b400514}\label{graficzny_8c_a5038641ef55b200d48a7d9827b400514}} 
+\index{graficzny.\+c@{graficzny.\+c}!wybor\+\_\+pliku@{wybor\+\_\+pliku}}
+\index{wybor\+\_\+pliku@{wybor\+\_\+pliku}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wybor\+\_\+pliku()}{wybor\_pliku()}}
+{\footnotesize\ttfamily wybor\+\_\+pliku (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{char $\ast$}]{nazwa\+\_\+pliku }\end{DoxyParamCaption})}
+
+
+
+Funkcja umozliwiajaca wybor pliku z dysku -\/ skladowa funkcjonalnosci W\+C\+Z\+Y\+T\+Y\+W\+A\+N\+IA bazy danych. 
+
+Wyswietla viewer i pozwala wybrac dowolny plik z dysku 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em nazwa\+\_\+pliku} & -\/ adres wybranego pliku na dysku \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nazwa\+\_\+pliku -\/ adres wybranego pliku na dysku 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_adbdcc55deb49ea0cec9507f9b9252b55}\label{graficzny_8c_adbdcc55deb49ea0cec9507f9b9252b55}} 
+\index{graficzny.\+c@{graficzny.\+c}!wyswietlenie\+\_\+calosci@{wyswietlenie\+\_\+calosci}}
+\index{wyswietlenie\+\_\+calosci@{wyswietlenie\+\_\+calosci}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+\_\+calosci()}{wyswietlenie\_calosci()}}
+{\footnotesize\ttfamily wyswietlenie\+\_\+calosci (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyswietla baze danych. 
+
+Tworzy pad o wiekszych rozmiarach niz ekran urzadzenia, wyswietla dane i umozliwia scorllowanie/ poruszanie sie strzalkami w celu ogladania danych 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_aa5d0d4e2ff1927945727afa64e003140}\label{graficzny_8c_aa5d0d4e2ff1927945727afa64e003140}} 
+\index{graficzny.\+c@{graficzny.\+c}!wyswietlenie\+\_\+wyszukania@{wyswietlenie\+\_\+wyszukania}}
+\index{wyswietlenie\+\_\+wyszukania@{wyswietlenie\+\_\+wyszukania}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wyswietlenie\+\_\+wyszukania()}{wyswietlenie\_wyszukania()}}
+{\footnotesize\ttfamily wyswietlenie\+\_\+wyszukania (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{int}]{wybor }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyswietlajaca wynik wyszukania plyty/plyt przez uzytkownika. 
+
+Tworzy pad o wiekszych rozmiarach niz ekran urzadzenia, wyswietla dane i umozliwia scorllowanie/ poruszanie sie strzalkami w celu ogladania danych 
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em wybor} & -\/ wartosc zwracana przez funkcje dialog\+\_\+2 potrzebna do instrukcji sterujacej wywolaniem funkcji wyszukanie\+\_\+elementu. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+D\+A\+NE \mbox{\Hypertarget{graficzny_8c_a6e1d497b4c181e252ed5f40a0f3be870}\label{graficzny_8c_a6e1d497b4c181e252ed5f40a0f3be870}} 
+\index{graficzny.\+c@{graficzny.\+c}!wyszukanie\+\_\+elementu@{wyszukanie\+\_\+elementu}}
+\index{wyszukanie\+\_\+elementu@{wyszukanie\+\_\+elementu}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wyszukanie\+\_\+elementu()}{wyszukanie\_elementu()}}
+{\footnotesize\ttfamily wyszukanie\+\_\+elementu (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{char $\ast$}]{artysta\+\_\+do\+\_\+wyszukania,  }\item[{char $\ast$}]{gatunek\+\_\+do\+\_\+wyszukania,  }\item[{int}]{rok\+\_\+do\+\_\+wyszukania,  }\item[{int}]{l\+\_\+utworow\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania,  }\item[{W\+I\+N\+D\+OW $\ast$}]{pad }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyszukujaca element z listy struktur (plyt) po zadanym przez uzytkownika polu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em tytul\+\_\+do\+\_\+wyszukania} & -\/ lancuch z tytulem plyty/plyt ktora uzytkownik chce wyszukac \\
+\hline
+{\em artysta\+\_\+do\+\_\+wyszukania} & -\/ lancuch z artysta plyty/plyt ktora uzytkownik chce wyszukac \\
+\hline
+{\em gatunek\+\_\+do\+\_\+wyszukania} & -\/ lancuch z gatunkiem plyty/plyt ktora uzytkownik chce wyszukac \\
+\hline
+{\em rok\+\_\+do\+\_\+wyszukania} & -\/ rok po ktorym plyty maja byc wyszukane \\
+\hline
+{\em l\+\_\+utworow\+\_\+do\+\_\+wyszukania} & -\/ liczba utworow po ktorej plyty maja byc wyszukane \\
+\hline
+{\em id\+\_\+do\+\_\+wyszukania} & -\/ wartosc id do wyszukania \\
+\hline
+{\em okno} & -\/ okno do pracy dla C\+DK \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a309a58453a41c2b258baf8f49070ebf8}\label{graficzny_8c_a309a58453a41c2b258baf8f49070ebf8}} 
+\index{graficzny.\+c@{graficzny.\+c}!wyszukanie\+\_\+elementu\+\_\+edycja@{wyszukanie\+\_\+elementu\+\_\+edycja}}
+\index{wyszukanie\+\_\+elementu\+\_\+edycja@{wyszukanie\+\_\+elementu\+\_\+edycja}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{wyszukanie\+\_\+elementu\+\_\+edycja()}{wyszukanie\_elementu\_edycja()}}
+{\footnotesize\ttfamily wyszukanie\+\_\+elementu\+\_\+edycja (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{char $\ast$}]{tytul\+\_\+do\+\_\+wyszukania,  }\item[{int}]{id\+\_\+do\+\_\+wyszukania }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyszukujaca element do edycji z listy struktur (plyt) po zadanym przez uzytkownika polu (tytule lub id) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em tytul\+\_\+do\+\_\+wyszukania} & -\/ lancuch z tytulem plyty/plyt ktora uzytkownik chce wyszukac \\
+\hline
+{\em id\+\_\+do\+\_\+wyszukania} & -\/ wartosc id do wyszukania \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_a7f29f70b1ad8b945b8842e8ad69114d2}\label{graficzny_8c_a7f29f70b1ad8b945b8842e8ad69114d2}} 
+\index{graficzny.\+c@{graficzny.\+c}!zapis\+\_\+do\+\_\+pliku@{zapis\+\_\+do\+\_\+pliku}}
+\index{zapis\+\_\+do\+\_\+pliku@{zapis\+\_\+do\+\_\+pliku}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{zapis\+\_\+do\+\_\+pliku()}{zapis\_do\_pliku()}}
+{\footnotesize\ttfamily zapis\+\_\+do\+\_\+pliku (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+
+
+Funkcja umozliwiajaca zapisanie bazy danych z programu do pliku na dysku (do katalogu zrodlowego programu) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graficzny_8c_ae2818c21e93db9d6a97bfdf600359c91}\label{graficzny_8c_ae2818c21e93db9d6a97bfdf600359c91}} 
+\index{graficzny.\+c@{graficzny.\+c}!zwolnienie\+\_\+pamieci@{zwolnienie\+\_\+pamieci}}
+\index{zwolnienie\+\_\+pamieci@{zwolnienie\+\_\+pamieci}!graficzny.\+c@{graficzny.\+c}}
+\subsubsection{\texorpdfstring{zwolnienie\+\_\+pamieci()}{zwolnienie\_pamieci()}}
+{\footnotesize\ttfamily zwolnienie\+\_\+pamieci (\begin{DoxyParamCaption}\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album }\end{DoxyParamCaption})}
+
+
+
+Funkcja zwalniajaca uprzednio zaalokowana pamiec dla listy jednokierunkowej struktur (plyt) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pierwszy\+\_\+album -\/ wskaznik pierwszy element listy jednokierunkowej 
+\end{DoxyReturn}

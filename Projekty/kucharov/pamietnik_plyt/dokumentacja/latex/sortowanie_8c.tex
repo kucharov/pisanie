@@ -1,0 +1,277 @@
+\hypertarget{sortowanie_8c}{}\section{sortowanie.\+c File Reference}
+\label{sortowanie_8c}\index{sortowanie.\+c@{sortowanie.\+c}}
+
+
+Plik z funkcjami sortujacymi programu PP.  
+
+
+{\ttfamily \#include \char`\"{}graficzny.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sortowanie_8c_a45d42e731dd836e99a2587dd24ef2f14}{sortowanie} (C\+D\+K\+S\+C\+R\+E\+EN $\ast$ekran, \hyperlink{struct_element}{Wskaznik\+Na\+Element} pierwszy\+\_\+album, int wybor1, int wybor2)
+\begin{DoxyCompactList}\small\item\em Funkcja sortujaca i wyswietlajaca posortowane elementy listy (bazy danych) \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_acab51a33979f16d8851938727efa3c52}{Msortuj\+\_\+rok} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_ad97e5b4e6567508963c372b9b58c4eee}{Msortuj\+\_\+l\+\_\+utworow} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_a58669f1216800b1f1e98580bd3e4d967}{Msortuj\+\_\+tytul} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_a9d8ee05c1bd66d25fbdb688488da1043}{Msortuj\+\_\+artysta} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_aa2fc7dd117fecf317a84a5cdfb3f125b}{Msortuj\+\_\+gatunek} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_af0780572cd685551a64d1c723c636db4}{Rsortuj\+\_\+rok} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_a0b2f4f67161750e5c40646d040422770}{Rsortuj\+\_\+l\+\_\+utworow} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_a1d6dbf873e44470cc6356053fade87d0}{Rsortuj\+\_\+tytul} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_a74beb38927417a478a6a1b65a56f5d3b}{Rsortuj\+\_\+artysta} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\item 
+int \hyperlink{sortowanie_8c_ac099195d6fbd405a189f7ab9dc048b97}{Rsortuj\+\_\+gatunek} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Funkcja porownujaca dla funkcji qsort. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Plik z funkcjami sortujacymi programu PP. 
+
+\begin{DoxyAuthor}{Author}
+Konrad Kucharczyk 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16.\+01.\+2019 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Praca i wlasnosc Konrada Kucharczyka 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sortowanie_8c_a9d8ee05c1bd66d25fbdb688488da1043}\label{sortowanie_8c_a9d8ee05c1bd66d25fbdb688488da1043}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Msortuj\+\_\+artysta@{Msortuj\+\_\+artysta}}
+\index{Msortuj\+\_\+artysta@{Msortuj\+\_\+artysta}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Msortuj\+\_\+artysta()}{Msortuj\_artysta()}}
+{\footnotesize\ttfamily int Msortuj\+\_\+artysta (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}artysta\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal malejaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba -\/1 gdy el1 jest mniejszy od el2 liczba 1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_aa2fc7dd117fecf317a84a5cdfb3f125b}\label{sortowanie_8c_aa2fc7dd117fecf317a84a5cdfb3f125b}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Msortuj\+\_\+gatunek@{Msortuj\+\_\+gatunek}}
+\index{Msortuj\+\_\+gatunek@{Msortuj\+\_\+gatunek}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Msortuj\+\_\+gatunek()}{Msortuj\_gatunek()}}
+{\footnotesize\ttfamily int Msortuj\+\_\+gatunek (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}gatunek\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal malejaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba -\/1 gdy el1 jest mniejszy od el2 liczba 1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_ad97e5b4e6567508963c372b9b58c4eee}\label{sortowanie_8c_ad97e5b4e6567508963c372b9b58c4eee}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Msortuj\+\_\+l\+\_\+utworow@{Msortuj\+\_\+l\+\_\+utworow}}
+\index{Msortuj\+\_\+l\+\_\+utworow@{Msortuj\+\_\+l\+\_\+utworow}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Msortuj\+\_\+l\+\_\+utworow()}{Msortuj\_l\_utworow()}}
+{\footnotesize\ttfamily int Msortuj\+\_\+l\+\_\+utworow (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}l\+\_\+utworow\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal malejaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba -\/1 gdy el1 jest mniejszy od el2 liczba 1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_acab51a33979f16d8851938727efa3c52}\label{sortowanie_8c_acab51a33979f16d8851938727efa3c52}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Msortuj\+\_\+rok@{Msortuj\+\_\+rok}}
+\index{Msortuj\+\_\+rok@{Msortuj\+\_\+rok}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Msortuj\+\_\+rok()}{Msortuj\_rok()}}
+{\footnotesize\ttfamily int Msortuj\+\_\+rok (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}rok\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal malejaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba -\/1 gdy el1 jest mniejszy od el2 liczba 1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_a58669f1216800b1f1e98580bd3e4d967}\label{sortowanie_8c_a58669f1216800b1f1e98580bd3e4d967}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Msortuj\+\_\+tytul@{Msortuj\+\_\+tytul}}
+\index{Msortuj\+\_\+tytul@{Msortuj\+\_\+tytul}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Msortuj\+\_\+tytul()}{Msortuj\_tytul()}}
+{\footnotesize\ttfamily int Msortuj\+\_\+tytul (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}tytul\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal malejaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba -\/1 gdy el1 jest mniejszy od el2 liczba 1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_a74beb38927417a478a6a1b65a56f5d3b}\label{sortowanie_8c_a74beb38927417a478a6a1b65a56f5d3b}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Rsortuj\+\_\+artysta@{Rsortuj\+\_\+artysta}}
+\index{Rsortuj\+\_\+artysta@{Rsortuj\+\_\+artysta}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Rsortuj\+\_\+artysta()}{Rsortuj\_artysta()}}
+{\footnotesize\ttfamily int Rsortuj\+\_\+artysta (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}artysta\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba 1 gdy el1 jest mniejszy od el2 liczba -\/1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_ac099195d6fbd405a189f7ab9dc048b97}\label{sortowanie_8c_ac099195d6fbd405a189f7ab9dc048b97}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Rsortuj\+\_\+gatunek@{Rsortuj\+\_\+gatunek}}
+\index{Rsortuj\+\_\+gatunek@{Rsortuj\+\_\+gatunek}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Rsortuj\+\_\+gatunek()}{Rsortuj\_gatunek()}}
+{\footnotesize\ttfamily int Rsortuj\+\_\+gatunek (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}gatunek\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba 1 gdy el1 jest mniejszy od el2 liczba -\/1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_a0b2f4f67161750e5c40646d040422770}\label{sortowanie_8c_a0b2f4f67161750e5c40646d040422770}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Rsortuj\+\_\+l\+\_\+utworow@{Rsortuj\+\_\+l\+\_\+utworow}}
+\index{Rsortuj\+\_\+l\+\_\+utworow@{Rsortuj\+\_\+l\+\_\+utworow}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Rsortuj\+\_\+l\+\_\+utworow()}{Rsortuj\_l\_utworow()}}
+{\footnotesize\ttfamily int Rsortuj\+\_\+l\+\_\+utworow (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}l\+\_\+utworow\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba 1 gdy el1 jest mniejszy od el2 liczba -\/1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_af0780572cd685551a64d1c723c636db4}\label{sortowanie_8c_af0780572cd685551a64d1c723c636db4}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Rsortuj\+\_\+rok@{Rsortuj\+\_\+rok}}
+\index{Rsortuj\+\_\+rok@{Rsortuj\+\_\+rok}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Rsortuj\+\_\+rok()}{Rsortuj\_rok()}}
+{\footnotesize\ttfamily int Rsortuj\+\_\+rok (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}rok\char`\"{} listy i daje funkcji qsort taka informacje zeby ten sortowal rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba 1 gdy el1 jest mniejszy od el2 liczba -\/1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_a1d6dbf873e44470cc6356053fade87d0}\label{sortowanie_8c_a1d6dbf873e44470cc6356053fade87d0}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!Rsortuj\+\_\+tytul@{Rsortuj\+\_\+tytul}}
+\index{Rsortuj\+\_\+tytul@{Rsortuj\+\_\+tytul}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{Rsortuj\+\_\+tytul()}{Rsortuj\_tytul()}}
+{\footnotesize\ttfamily int Rsortuj\+\_\+tytul (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Funkcja porownujaca dla funkcji qsort. 
+
+Porownuje pola \char`\"{}tytul\char`\"{} listy i daje funkcji qsort taka informacje, zeby ten sortowal rosnaco 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ pierwszy porownywany element \\
+\hline
+{\em b} & -\/ drugi porownywany element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie rownosci elementow porownywanych liczba 1 gdy el1 jest mniejszy od el2 liczba -\/1 gdy el1 jest wiekszy od el2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sortowanie_8c_a45d42e731dd836e99a2587dd24ef2f14}\label{sortowanie_8c_a45d42e731dd836e99a2587dd24ef2f14}} 
+\index{sortowanie.\+c@{sortowanie.\+c}!sortowanie@{sortowanie}}
+\index{sortowanie@{sortowanie}!sortowanie.\+c@{sortowanie.\+c}}
+\subsubsection{\texorpdfstring{sortowanie()}{sortowanie()}}
+{\footnotesize\ttfamily int sortowanie (\begin{DoxyParamCaption}\item[{C\+D\+K\+S\+C\+R\+E\+EN $\ast$}]{ekran,  }\item[{\hyperlink{struct_element}{Wskaznik\+Na\+Element}}]{pierwszy\+\_\+album,  }\item[{int}]{wybor1,  }\item[{int}]{wybor2 }\end{DoxyParamCaption})}
+
+
+
+Funkcja sortujaca i wyswietlajaca posortowane elementy listy (bazy danych) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ekran} & -\/ ekran do pracy dla C\+DK \\
+\hline
+{\em pierwszy\+\_\+album} & -\/ wskaznik pierwszy element listy jednokierunkowej \\
+\hline
+{\em wybor1} & -\/ wybor uzytkownika z okna dialog\+\_\+3 -\/ mowi o polu po ktorym sortowac \\
+\hline
+{\em wybor2} & -\/ wybor uzytkownika z okna dialog\+\_\+4 -\/ mowi o kolejnosci sortowania malejaco, rosnaco \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+liczba 0 w razie poprawnego wywolania 
+\end{DoxyReturn}
