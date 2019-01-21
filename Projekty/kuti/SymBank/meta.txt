@@ -1,1 +1,0 @@
-set title 'HISTOGRAM FUNKCJI GAUSS() NA PRZEDZIALE [srednia 0 odchył 1]'; set xlabel 'liczba'; set ylabel 'czestosc';plot './histogram.txt

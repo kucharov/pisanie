@@ -1,0 +1,14 @@
+s:4				//srednia liczba na godzine osob przychodzacych do banku
+o:3				//odchylenie standardowe od sredniej
+.				// segmenty oddzielamy kropka.
+okienka:3				// okreslamy liczbe okienek w banku
+.
+s:3				// po kolei - oddzielajac kropkami - podajemy parametry dla kazdego okienka
+o:2.5
+.
+s:6				//sredni czas w sekundach obslugi klienta przez urzedniczke
+o:4				//odchylenie standardowe od sredniego czasu obslugi klienta.
+.
+s:5
+o:5
+.
