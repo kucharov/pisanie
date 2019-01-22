@@ -14,17 +14,9 @@
  * 
  * 
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  */
  
- //dyrektywy 
+ //dyrektywy wstepne takie tam 
  
  #include <stdio.h>
  #include <stdlib.h>
@@ -47,12 +39,13 @@ typedef struct{
 		double odchylenie;
 		int liczba_okienek;
 		okienko *okienka;
+		long int czas_symulacji;
 	}dane;
 	
 struct osoba{
 		struct osoba *nastepny;
 		struct osoba *poprzedni;
-		int czas;
+		
 	};typedef struct osoba osoba; 
 					
  
@@ -77,7 +70,8 @@ int main(void)
 
 char *nazwa_wejscia;
 int testwejscia;
-dane *pakiet; 
+dane *pakiet;
+long long int czas; 
 
 for(;;)
 {
@@ -90,18 +84,18 @@ do{
 	}while(testwejscia != 0);
 	
 	pakiet = wczytanie(nazwa_wejscia);
-	free(nazwa_wejscia);												 //oszczednosc miejsca
+	free(nazwa_wejscia);												 //oszczednosc miejsca, nie bede juz korzystac z tej zmiennej.
 	
 	
-{	/* printf("\nklienci: srednia: %lf  odchylenie: %lf", pakiet->klienci_srednio, pakiet->odchylenie);
+{	 printf("\nklienci: srednia: %lf  odchylenie: %lf   czas symulacji (s): %ld", pakiet->klienci_srednio, pakiet->odchylenie, pakiet->czas_symulacji);
 		int testlicznik; 
 		for(testlicznik=0;testlicznik<(pakiet->liczba_okienek); testlicznik++)
 		{
 			printf("\nokienko %d: srednia: %lf  odchylenie: %lf", testlicznik+1, pakiet->okienka[testlicznik].srednia, pakiet->okienka[testlicznik].odchylenie);
-		}return 0;  */
+		}return 0;  
 }	
 
-	
+
 	
 	
 	
@@ -161,8 +155,10 @@ int plik_wzorcowy(void)
 	
 	if ((wzorzec = fopen("SymBank_format_pliku.txt", "w")) == NULL) {printf("\nBlad tworzenia pliku wzorcowego, sprobuj jeszcze raz w innej lokalizacji.\n"); return 1;}
 	
-	fprintf(wzorzec, "s:4				//srednia liczba na godzine osob przychodzacych do banku\no:3				//odchylenie standardowe od sredniej\n.				// segmenty oddzielamy kropka.\n");
-	fprintf(wzorzec, "okienka:3				// okreslamy liczbe okienek w banku\n.\ns:3				// po kolei - oddzielajac kropkami - podajemy parametry dla kazdego okienka\no:2.5\n.\ns:6				//sredni czas w sekundach obslugi klienta przez urzedniczke\no:4				//");
+	fprintf(wzorzec, "g 36				//do wyboru s/m/g/d/l Sekundy/Minuty/Godziny/Dni/Lata - czas trwania symulacji\n.");
+	fprintf(wzorzec, "\ns:4				//srednia liczba na godzine osob przychodzacych do banku\no:3				//odchylenie standardowe od sredniej\n.				// segmenty oddzielamy kropka.\n");
+	fprintf(wzorzec, "okienka:3				// okreslamy liczbe okienek w banku\n.\ns:3				// po kolei - oddzielajac kropkami - podajemy parametry dla kazdego okienka\no:2.5\n.\ns:6				");
+	fprintf(wzorzec, "//sredni czas w sekundach obslugi klienta przez urzedniczke\no:4				//");
 	fprintf(wzorzec, "odchylenie standardowe od sredniego czasu obslugi klienta.\n.\ns:5\no:5\n.");
 	
 	fclose(wzorzec);
@@ -175,11 +171,19 @@ int kontrolapliku(char *nazwapliku)
 	int test, okienka, licznik, blad=0;
 	char testznak;
 	double kontrola;
+	long double sprawdzenie;
 	
 	
 	FILE *plik;
 	if ((plik = fopen(nazwapliku, "r")) == NULL) { printf("\nAlarm. Nie udalo sie odczytac pliku o podanej nazwie. Moze sie pomyliles albo jest on w innym katalogu niz program?\n"); return 1;}
 	
+	
+	testznak = fgetc(plik);
+	if((testznak != 'm') && (testznak != 's') && (testznak != 'g') && (testznak != 'l') && (testznak != 'd')) blad = 1;
+	if((test = fscanf(plik, " %Lf", &sprawdzenie)) != 1) blad = 1;
+	fgetc(plik);
+	if((testznak = fgetc(plik)) != '.') blad = 1;
+	fgetc(plik);
 	if((test = fscanf(plik, "s:%lf", &kontrola)) != 1) blad = 1;
 	if((test = fscanf(plik, "\no:%lf", &kontrola)) != 1) blad = 1;
 	fgetc(plik);
@@ -205,12 +209,17 @@ int kontrolapliku(char *nazwapliku)
 dane * wczytanie(char *nazwapliku)
 {
 	dane *pakiet;
-	
+	long double dlugosc_symulacji;
+	char jednostka_czasu;
 	int licznik;
 
 	FILE *plik = fopen(nazwapliku, "r");
 	pakiet = (dane *)malloc(sizeof(dane));
 	
+	
+	jednostka_czasu = fgetc(plik);
+	fscanf(plik, " %Lf", &dlugosc_symulacji);
+	fgetc(plik); fgetc(plik); fgetc(plik);
 	fscanf(plik, "s:%lf", &pakiet->klienci_srednio);
 	fscanf(plik, "\no:%lf", &pakiet->odchylenie);
 	fgetc(plik); fgetc(plik); fgetc(plik);
@@ -221,9 +230,27 @@ dane * wczytanie(char *nazwapliku)
 		{
 			fscanf(plik, "s:%lf", &(pakiet->okienka[licznik].srednia));
 			fscanf(plik, "\no:%lf", &(pakiet->okienka[licznik].odchylenie));
-			fgetc(plik); fgetc(plik); fgetc(plik);										// jedno na \n, drugie na kropkę. 
+			fgetc(plik); fgetc(plik); fgetc(plik);										// jedno na \n, drugie na kropkę, trzecie znów na \n 
 				
-		}	
+		}
+		
+	switch (jednostka_czasu)
+			{
+				case 's': pakiet->czas_symulacji = nearbyintl(dlugosc_symulacji); break;
+				
+				case 'm': pakiet->czas_symulacji = 60 * nearbyintl(dlugosc_symulacji); break;
+				
+				case 'g': pakiet->czas_symulacji = 60 * 60 * nearbyintl(dlugosc_symulacji); break;
+				
+				case 'd': pakiet->czas_symulacji = 60 * 60 * 24 * nearbyintl(dlugosc_symulacji); break;
+				
+				case 'l': pakiet->czas_symulacji = 60 * 60 * 24 * 365 * nearbyintl(dlugosc_symulacji); break;				
+			}
+		
+		
+		
+		
+			
 		fclose(plik);
 		return pakiet;
 	}

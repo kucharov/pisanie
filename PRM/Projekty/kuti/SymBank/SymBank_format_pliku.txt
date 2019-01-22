@@ -1,3 +1,5 @@
+g 36				//do wyboru s/m/g/d/l Sekundy/Minuty/Godziny/Dni/Lata - czas trwania symulacji
+.
 s:4				//srednia liczba na godzine osob przychodzacych do banku
 o:3				//odchylenie standardowe od sredniej
 .				// segmenty oddzielamy kropka.
