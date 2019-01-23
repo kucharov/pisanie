@@ -43,9 +43,7 @@ typedef struct{
 	}dane;
 	
 struct osoba{
-		struct osoba *nastepny;
-		struct osoba *poprzedni;
-		
+		struct osoba *nastepny;	
 	};typedef struct osoba osoba; 
 					
  
@@ -53,25 +51,28 @@ typedef struct{
 		osoba *pierwszy;
 		osoba *ostatni;
 		int dlugosc;
+		okienko rozklad;
 	}kolejka;
 	
 
 //funkcje
 void menu(void);
-double gauss(double, double); //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
+double gauss(double, double);
 int plik_wzorcowy(void);
 int kontrolapliku(char *);
 dane * wczytanie(char *);
+int najkrotsza(dane *);
 
 
 int main(void)
 {
 	
-
+//zmienne w main()
 char *nazwa_wejscia;
-int testwejscia;
+int testwejscia, a, wchodzacy, interwal;
 dane *pakiet;
 long long int czas; 
+kolejka *kolejki, *najkrotsza_indeks;
 
 for(;;)
 {
@@ -87,15 +88,58 @@ do{
 	free(nazwa_wejscia);												 //oszczednosc miejsca, nie bede juz korzystac z tej zmiennej.
 	
 	
-{	 printf("\nklienci: srednia: %lf  odchylenie: %lf   czas symulacji (s): %ld", pakiet->klienci_srednio, pakiet->odchylenie, pakiet->czas_symulacji);
+{	/* printf("\nklienci: srednia: %lf  odchylenie: %lf   czas symulacji (s): %ld", pakiet->klienci_srednio, pakiet->odchylenie, pakiet->czas_symulacji);
 		int testlicznik; 
 		for(testlicznik=0;testlicznik<(pakiet->liczba_okienek); testlicznik++)
 		{
 			printf("\nokienko %d: srednia: %lf  odchylenie: %lf", testlicznik+1, pakiet->okienka[testlicznik].srednia, pakiet->okienka[testlicznik].odchylenie);
-		}return 0;  
+		}return 0;  */
 }	
 
 
+
+
+
+
+
+kolejki = (kolejka *)malloc(pakiet->liczba_okienek * sizeof(kolejka));
+for(a=0;a<pakiet->liczba_okienek;a++) kolejki[a] = pakiet->okienka[a];
+
+
+
+for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulująca
+	{
+		while(czas%3600 == 0) //jako ze w danych sterujacych podano srednia czestotliwosc wchodzenia klientow / godzine, godzina jest wyjsciową jednostką czasu dla zmiany liczby wchodzących klientów - czyli co godzinę liczba ta się zmienia, co wykonuje niniejsza pętla while
+			{
+				los = gauss(pakiet->klienci_srednio, pakiet->odchylenie); 	// uzywamy mojej super funkcji
+				wchodzacy = nearbyint(los);		 //tyle ludzi wejdzie do banku w ciagu aktualnej godziny. Symulacja jest realna wiec zaokraglamy do najblizszej liczby calkowitej - nikt nie widzial polowki klienta wchodzacej do banku
+				interwal = (60 * 60)/wchodzacy; 		// co tyle sekund srednio wejdzie do banku nowy klient w ciagu biezacej godziny. Czesc ulamkowa i tak obcinamy, bo glowny zegar symulacji ma rozdzielczosc 1 sekundy
+				
+			}
+			
+			
+		if((czas%interwal)==0) 
+			{
+				najkrotsza_indeks = najkrotsza(kolejki, pakiet);
+				
+				nowy_klient = (osoba *)malloc(sizeof(osoba));
+				kolejki[najkrotsza_indeks].dlugosc++;
+				kolejki[najkrotsza_indeks].
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
 	
 	
 	
@@ -104,7 +148,7 @@ do{
 }
 
 
-double gauss(double srednia, double odchylenie)
+double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
 {
 	double s, losowa1, losowa2;
 	do{ 
@@ -255,7 +299,37 @@ dane * wczytanie(char *nazwapliku)
 		return pakiet;
 	}
 	
+
+int nakrotsza(kolejka *kolejki, dane *info)
+{
 	
+	int b, minimum = kolejki[0].dlugosc, powtorzenia = 0;flaga = 0, indeks_najkrotszej = 0;
+	
+	
+	
+	for(b=1;b<info->liczba_okienek;b++)
+		{
+			if(kolejki[b].dlugosc < minimum) {minimum = kolejki[b].dlugosc; powtorzenia =0; flaga = 0; indeks_najkrotszej = b;}
+			if(kolejki[b].dlugosc == minimum) {powtorzenia++; flaga = 1;}// jesli jest kilka najkrotszych kolejek, trzeba zrobic tak, by klient wybieral jedna z tych kolejek losowo.
+			
+		}
+		
+		if (flaga==1) 
+			{
+				int *tablica, dlugosc_tablicy, wylosowany_indeks;// PAMIETAJ O TYCH ZMIENNYCH
+				tablica = (int *)malloc((powtorzenia+1)*sizeof(int));
+				dlugosc_tablicy = powtorzenia+1;
+				
+				for(b=0;b<info->liczba_okienek;b++) {if (kolejki[b].dlugosc == minimum) {tablica[dlugosc_tablicy-powtorzenia-1] = b;powtorzenia--;}}    
+				wylosowany_indeks = rand()%dlugosc_tablicy;  // no wiec jesli jest kilka najkrotszych kolejek, tworze tablice i umieszczam w niej ich indeksy, zeby pozniej jakis z nich wylosowac i zwrocic .
+				indeks_najkrotszej = tablica[wylosowany_indeks];
+				free(tablica);
+				return indeks_najkrotszej;
+			}
+	
+	return indeks_najkrotszej; 
+	
+}
 	
 	
 	
