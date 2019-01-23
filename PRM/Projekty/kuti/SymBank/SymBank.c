@@ -106,7 +106,7 @@ do{
 		for(testlicznik=0;testlicznik<(pakiet->liczba_okienek); testlicznik++)
 		{
 			printf("\nokienko %d: srednia: %lf  odchylenie: %lf", testlicznik+1, pakiet->okienka[testlicznik].srednia, pakiet->okienka[testlicznik].odchylenie);
-		}return 0;  */
+		}return 0; */  
 }	
 
 
@@ -116,13 +116,18 @@ do{
 
 
 kolejki = (kolejka *)malloc(pakiet->liczba_okienek * sizeof(kolejka)); // tworzymy tyle kolejek ile okienek podal uzytkownik w pliku
-for(a=0;a<pakiet->liczba_okienek;a++) {kolejki[a].rozklad.srednia = pakiet->okienka[a].srednia; kolejki[a].rozklad.odchylenie = pakiet->okienka[a].odchylenie;} // kopiujemy dane ze struktury wyciagnietej z pliku do kazdej z przed chwila utworzonych kolejek
-for(a=0;a<pakiet->liczba_okienek;a++) {kolejki[a].rejestr = (sekunda *)malloc(pakiet->czas_symulacji * sizeof(sekunda)); kolejki[a].dowidzenia = 0; kolejki[a].wolne = 1;}	//ponadto, w kazdej kolejce tworzymy rejestr monitorujacy dlugosc i liczbe obsluzonych klientow i sygnalizujemy, ze na poczatku symulacji przeciez wszystkie okienka sa wolne.
+for(a=0;a<(pakiet->liczba_okienek);a++) {kolejki[a].rozklad.srednia = pakiet->okienka[a].srednia; kolejki[a].rozklad.odchylenie = pakiet->okienka[a].odchylenie;} // kopiujemy dane ze struktury wyciagnietej z pliku do kazdej z przed chwila utworzonych kolejek
+for(a=0;a<(pakiet->liczba_okienek);a++) 
+		{
+			kolejki[a].rejestr = (sekunda *)malloc(pakiet->czas_symulacji * sizeof(sekunda)); 
+			kolejki[a].dowidzenia = 0; 
+			kolejki[a].wolne = 1;
+			kolejki[a].dlugosc = 0;}	//ponadto, w kazdej kolejce tworzymy rejestr monitorujacy dlugosc i liczbe obsluzonych klientow i sygnalizujemy, ze na poczatku symulacji przeciez wszystkie okienka sa wolne.
 
 
 for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulująca
 	{
-		while(czas%3600 == 0) //jako ze w danych sterujacych podano srednia czestotliwosc wchodzenia klientow / godzine, godzina jest wyjsciową jednostką czasu dla zmiany liczby wchodzących klientów - czyli co godzinę liczba ta się zmienia, co wykonuje niniejsza pętla while
+		if(czas%3600 == 0) //jako ze w danych sterujacych podano srednia czestotliwosc wchodzenia klientow / godzine, godzina jest wyjsciową jednostką czasu dla zmiany liczby wchodzących klientów - czyli co godzinę liczba ta się zmienia, co wykonuje niniejsza pętla while
 			{
 				los = gauss(pakiet->klienci_srednio, pakiet->odchylenie); 	// uzywamy mojej super funkcji
 				wchodzacy = nearbyint(los);		 //tyle ludzi wejdzie do banku w ciagu aktualnej godziny. Symulacja jest realna wiec zaokraglamy do najblizszej liczby calkowitej - nikt nie widzial polowki klienta wchodzacej do banku
@@ -143,7 +148,7 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 						kolejki[najkrotsza_indeks].ostatni = nowy_klient;
 					}
 					
-					
+				}	
 			// teraz czas na obsluge kolejek przez okienka. tworzę pętle, w ktorej po kolei wszystkie okienka beda przyjmowac klientow. Jako ze wszystko dzieje sie w glownej petli symulacyjnej ktorej skok wynosi 1 s, tworzy się zludzenie, ze okienka pracują jednoczesnie.
 			
 			
@@ -159,17 +164,18 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 										}
 							
 							
-							if(wolne==1)
+							if(wolne==1 && kolejki[a].dlugosc != 0)
 										{
 											los = gauss(kolejki[a].rozklad.srednia, kolejki[a].rozklad.odchylenie); // losujemy czas w minutach spedzony przy okienku przez nadchodzacego klienta.
 											czas_obslugi = nearbyint(los * 60); // czas obslugi klienta w sekundach
 											kolejki[a].dowidzenia = czas + czas_obslugi; // dowidzenia jest czasem, kiedy klient opusci okienko.
 											kolejki[a].wolne = 0; // wywieszamy informacje ZAJETE - nastepne losowanie czasu dopiero, gdy czas obslugi dobiegnie konca	
 											
-											zegnam = kolejki[a].pierwszy;	// klient ktory wlasnie podchodzi od okienka.. (zegnam)
+											zegnam = kolejki[a].pierwszy;	// klient ktory wlasnie podchodzi od okienka.. 
 											kolejki[a].pierwszy = zegnam->nastepny;	// przekazuje palmę pierwszenstwa w kolejce osobie następnej...
-											kolejki[a].dlugosc--;	// kolejka skraca sie o 1 .....
+											kolejki[a].dlugosc--; 	// kolejka skraca sie o 1 .....
 											free(zegnam); // i dla kolejki klient juz nie istnieje, wymazujemy go z pamieci
+											return 0;
 											
 										}	
 							
@@ -180,20 +186,6 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 						}
 					
 					
-						
-				
-				
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	}
@@ -203,7 +195,7 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 	
 }	
 }
-}
+
 
 
 double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
