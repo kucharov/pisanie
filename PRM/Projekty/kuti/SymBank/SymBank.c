@@ -22,12 +22,16 @@
  #include <stdlib.h>
  #include <string.h>
  #include <math.h>
- #include <time.h>
+ 
  
 
 
  
-//strukruty
+//struktury
+typedef struct{
+		int dlugosc;
+		long int obsluzeni;
+	}sekunda;
 		
  typedef struct{
 		double srednia;
@@ -52,6 +56,11 @@ typedef struct{
 		osoba *ostatni;
 		int dlugosc;
 		okienko rozklad;
+		int wolne;
+		int dowidzenia;
+		long int klienci;
+		long int czas_obslugi;
+		sekunda *rejestr;
 	}kolejka;
 	
 
@@ -61,7 +70,8 @@ double gauss(double, double);
 int plik_wzorcowy(void);
 int kontrolapliku(char *);
 dane * wczytanie(char *);
-int najkrotsza(dane *);
+int najkrotsza(kolejka *, dane *);
+
 
 
 int main(void)
@@ -69,10 +79,13 @@ int main(void)
 	
 //zmienne w main()
 char *nazwa_wejscia;
-int testwejscia, a, wchodzacy, interwal;
+int testwejscia, a, wchodzacy, interwal,wolne = 1, najkrotsza_indeks, czas_obslugi;
 dane *pakiet;
 long long int czas; 
-kolejka *kolejki, *najkrotsza_indeks;
+kolejka *kolejki;
+double los;
+osoba  *nowy_klient, *zegnam;
+
 
 for(;;)
 {
@@ -102,9 +115,9 @@ do{
 
 
 
-kolejki = (kolejka *)malloc(pakiet->liczba_okienek * sizeof(kolejka));
-for(a=0;a<pakiet->liczba_okienek;a++) kolejki[a] = pakiet->okienka[a];
-
+kolejki = (kolejka *)malloc(pakiet->liczba_okienek * sizeof(kolejka)); // tworzymy tyle kolejek ile okienek podal uzytkownik w pliku
+for(a=0;a<pakiet->liczba_okienek;a++) {kolejki[a].rozklad.srednia = pakiet->okienka[a].srednia; kolejki[a].rozklad.odchylenie = pakiet->okienka[a].odchylenie;} // kopiujemy dane ze struktury wyciagnietej z pliku do kazdej z przed chwila utworzonych kolejek
+for(a=0;a<pakiet->liczba_okienek;a++) {kolejki[a].rejestr = (sekunda *)malloc(pakiet->czas_symulacji * sizeof(sekunda)); kolejki[a].dowidzenia = 0; kolejki[a].wolne = 1;}	//ponadto, w kazdej kolejce tworzymy rejestr monitorujacy dlugosc i liczbe obsluzonych klientow i sygnalizujemy, ze na poczatku symulacji przeciez wszystkie okienka sa wolne.
 
 
 for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulująca
@@ -118,13 +131,57 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 			}
 			
 			
-		if((czas%interwal)==0) 
+		if((czas%interwal)==0) // co zadany interwal - wynikajacy z zadanej ilosci klientow na jednostke czasu - uruchamiana jest instrukcja wejscia klienta do banku i ustawienia sie w kolejce.
 			{
-				najkrotsza_indeks = najkrotsza(kolejki, pakiet);
+				najkrotsza_indeks = najkrotsza(kolejki, pakiet);// napisana wczesniej funkcja znajduje ( i jesli trzeba, losuje) najkrotsza kolejke do ktorej wstąpi klient
 				
 				nowy_klient = (osoba *)malloc(sizeof(osoba));
-				kolejki[najkrotsza_indeks].dlugosc++;
-				kolejki[najkrotsza_indeks].
+				if(kolejki[najkrotsza_indeks].dlugosc == 0) {kolejki[najkrotsza_indeks].pierwszy = nowy_klient; kolejki[najkrotsza_indeks].ostatni = nowy_klient; kolejki[najkrotsza_indeks].dlugosc = 1;}
+				else {
+						kolejki[najkrotsza_indeks].dlugosc++;
+						kolejki[najkrotsza_indeks].ostatni->nastepny = nowy_klient;
+						kolejki[najkrotsza_indeks].ostatni = nowy_klient;
+					}
+					
+					
+			// teraz czas na obsluge kolejek przez okienka. tworzę pętle, w ktorej po kolei wszystkie okienka beda przyjmowac klientow. Jako ze wszystko dzieje sie w glownej petli symulacyjnej ktorej skok wynosi 1 s, tworzy się zludzenie, ze okienka pracują jednoczesnie.
+			
+			
+			for(a=0;a<pakiet->liczba_okienek;a++)
+						{
+							
+							if(czas==kolejki[a].dowidzenia && czas != 0)// jesli czas poprzedniej wizyty (wylosowany wczesniej) dobiegl konca, zegnamy klienta zapisujac informacje o nim w rejestrze i wywieszamy informacje WOLNE !
+										{
+											kolejki[a].klienci++; //dodajemy klienta ktory wlasnie odchodzi do calkowitej liczby obsluzonych przy okienku
+											kolejki[a].wolne = 1; // pani w okienku mowi ' zapraszam!'
+											
+											
+										}
+							
+							
+							if(wolne==1)
+										{
+											los = gauss(kolejki[a].rozklad.srednia, kolejki[a].rozklad.odchylenie); // losujemy czas w minutach spedzony przy okienku przez nadchodzacego klienta.
+											czas_obslugi = nearbyint(los * 60); // czas obslugi klienta w sekundach
+											kolejki[a].dowidzenia = czas + czas_obslugi; // dowidzenia jest czasem, kiedy klient opusci okienko.
+											kolejki[a].wolne = 0; // wywieszamy informacje ZAJETE - nastepne losowanie czasu dopiero, gdy czas obslugi dobiegnie konca	
+											
+											zegnam = kolejki[a].pierwszy;	// klient ktory wlasnie podchodzi od okienka.. (zegnam)
+											kolejki[a].pierwszy = zegnam->nastepny;	// przekazuje palmę pierwszenstwa w kolejce osobie następnej...
+											kolejki[a].dlugosc--;	// kolejka skraca sie o 1 .....
+											free(zegnam); // i dla kolejki klient juz nie istnieje, wymazujemy go z pamieci
+											
+										}	
+							
+							kolejki[a].rejestr[czas].dlugosc = kolejki[a].dlugosc;
+							kolejki[a].rejestr[czas].obsluzeni = kolejki[a].klienci;
+							
+							
+						}
+					
+					
+						
+				
 				
 	
 	
@@ -146,6 +203,7 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 	
 }	
 }
+}
 
 
 double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
@@ -153,7 +211,7 @@ double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe lic
 	double s, losowa1, losowa2;
 	do{ 
 		losowa1 = -1 + ((double)rand()/RAND_MAX) * 2;
-		losowa2 = -1 + ((double)rand()/RAND_MAX) * 2; 							// https://stackoverflow.com/questions/2325472/generate-random-numbers-following-a-normal-distribution-in-c-c
+		losowa2 = -1 + ((double)rand()/RAND_MAX) * 2; 							//korzystalem z tego:  https://en.wikipedia.org/wiki/Marsaglia_polar_method
 		s = (losowa1 * losowa1) + (losowa2 * losowa2);}
 	while (s >= 1 || s == 0);
 	return srednia + (odchylenie * losowa1 * sqrt((-2*log(s)) / s));  // działa!!. na koncu tego pliku zrodlowego zawarłem zakomentarzowany kod testujący mój generator. 
@@ -202,8 +260,8 @@ int plik_wzorcowy(void)
 	fprintf(wzorzec, "g 36				//do wyboru s/m/g/d/l Sekundy/Minuty/Godziny/Dni/Lata - czas trwania symulacji\n.");
 	fprintf(wzorzec, "\ns:4				//srednia liczba na godzine osob przychodzacych do banku\no:3				//odchylenie standardowe od sredniej\n.				// segmenty oddzielamy kropka.\n");
 	fprintf(wzorzec, "okienka:3				// okreslamy liczbe okienek w banku\n.\ns:3				// po kolei - oddzielajac kropkami - podajemy parametry dla kazdego okienka\no:2.5\n.\ns:6				");
-	fprintf(wzorzec, "//sredni czas w sekundach obslugi klienta przez urzedniczke\no:4				//");
-	fprintf(wzorzec, "odchylenie standardowe od sredniego czasu obslugi klienta.\n.\ns:5\no:5\n.");
+	fprintf(wzorzec, "//sredni czas w minutach obslugi klienta przez urzedniczke\no:4				//");
+	fprintf(wzorzec, "odchylenie standardowe od sredniego czasu obslugi klienta.(rowniez w minutach)\n.\ns:5\no:5\n.");
 	
 	fclose(wzorzec);
 	return 0;
@@ -300,10 +358,10 @@ dane * wczytanie(char *nazwapliku)
 	}
 	
 
-int nakrotsza(kolejka *kolejki, dane *info)
+int najkrotsza(kolejka *kolejki, dane *info)
 {
 	
-	int b, minimum = kolejki[0].dlugosc, powtorzenia = 0;flaga = 0, indeks_najkrotszej = 0;
+	int b, minimum = kolejki[0].dlugosc, powtorzenia = 0, flaga = 0, indeks_najkrotszej = 0;
 	
 	
 	
