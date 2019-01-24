@@ -1,0 +1,85 @@
+\hypertarget{structkolejka}{}\section{kolejka Struct Reference}
+\label{structkolejka}\index{kolejka@{kolejka}}
+
+
+Struktura bedaca elementem kolejki -\/ klientem czekajacym na swoja kolej.  
+
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structosoba}{osoba} $\ast$ \hyperlink{structkolejka_a4d248304c78ad2a38974f8c5b71c4c7c}{pierwszy}
+\item 
+\hyperlink{structosoba}{osoba} $\ast$ \hyperlink{structkolejka_a73379228b3b1b4b9e4646f176550df7e}{ostatni}
+\item 
+int \hyperlink{structkolejka_a97085701621cb4ae96ca2b284fc4a830}{dlugosc}
+\item 
+\hyperlink{structokienko}{okienko} \hyperlink{structkolejka_a6bf1b7b72ca4ecdd0436f324eb093e21}{rozklad}
+\item 
+int \hyperlink{structkolejka_aadcbb166e915b47c745827535abc3a9f}{wolne}
+\item 
+int \hyperlink{structkolejka_a1ed9b914e525025c5ac4bdfdfde4ce15}{dowidzenia}
+\item 
+long int \hyperlink{structkolejka_a903fe5525d677f3a47dcb4b07cd61864}{klienci}
+\item 
+\hyperlink{structsekunda}{sekunda} $\ast$ \hyperlink{structkolejka_a513e21be1be6b9960e90cadd19d49e47}{rejestr}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Struktura bedaca elementem kolejki -\/ klientem czekajacym na swoja kolej. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structkolejka_a97085701621cb4ae96ca2b284fc4a830}\label{structkolejka_a97085701621cb4ae96ca2b284fc4a830}} 
+\index{kolejka@{kolejka}!dlugosc@{dlugosc}}
+\index{dlugosc@{dlugosc}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{dlugosc}{dlugosc}}
+{\footnotesize\ttfamily int dlugosc}
+
+dlugosc kolejki \mbox{\Hypertarget{structkolejka_a1ed9b914e525025c5ac4bdfdfde4ce15}\label{structkolejka_a1ed9b914e525025c5ac4bdfdfde4ce15}} 
+\index{kolejka@{kolejka}!dowidzenia@{dowidzenia}}
+\index{dowidzenia@{dowidzenia}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{dowidzenia}{dowidzenia}}
+{\footnotesize\ttfamily int dowidzenia}
+
+wartosc ogolnego czasu symulacji, w ktorym klient stojacy przy okienku odchodzi od niego \mbox{\Hypertarget{structkolejka_a903fe5525d677f3a47dcb4b07cd61864}\label{structkolejka_a903fe5525d677f3a47dcb4b07cd61864}} 
+\index{kolejka@{kolejka}!klienci@{klienci}}
+\index{klienci@{klienci}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{klienci}{klienci}}
+{\footnotesize\ttfamily long int klienci}
+
+ogolna liczba obsluzonych przez okienko klientow \mbox{\Hypertarget{structkolejka_a73379228b3b1b4b9e4646f176550df7e}\label{structkolejka_a73379228b3b1b4b9e4646f176550df7e}} 
+\index{kolejka@{kolejka}!ostatni@{ostatni}}
+\index{ostatni@{ostatni}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{ostatni}{ostatni}}
+{\footnotesize\ttfamily \hyperlink{structosoba}{osoba}$\ast$ ostatni}
+
+wskaznik do ostatniej osoby w kolejce \mbox{\Hypertarget{structkolejka_a4d248304c78ad2a38974f8c5b71c4c7c}\label{structkolejka_a4d248304c78ad2a38974f8c5b71c4c7c}} 
+\index{kolejka@{kolejka}!pierwszy@{pierwszy}}
+\index{pierwszy@{pierwszy}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{pierwszy}{pierwszy}}
+{\footnotesize\ttfamily \hyperlink{structosoba}{osoba}$\ast$ pierwszy}
+
+wskaznik do pierwszej osoby w kolejce \mbox{\Hypertarget{structkolejka_a513e21be1be6b9960e90cadd19d49e47}\label{structkolejka_a513e21be1be6b9960e90cadd19d49e47}} 
+\index{kolejka@{kolejka}!rejestr@{rejestr}}
+\index{rejestr@{rejestr}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{rejestr}{rejestr}}
+{\footnotesize\ttfamily \hyperlink{structsekunda}{sekunda}$\ast$ rejestr}
+
+wskaznik do rejestru \mbox{\Hypertarget{structkolejka_a6bf1b7b72ca4ecdd0436f324eb093e21}\label{structkolejka_a6bf1b7b72ca4ecdd0436f324eb093e21}} 
+\index{kolejka@{kolejka}!rozklad@{rozklad}}
+\index{rozklad@{rozklad}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{rozklad}{rozklad}}
+{\footnotesize\ttfamily \hyperlink{structokienko}{okienko} rozklad}
+
+zmienna strukturalna zawierajaca wartosc rozkladu czasu obslugi przez dane okienko \mbox{\Hypertarget{structkolejka_aadcbb166e915b47c745827535abc3a9f}\label{structkolejka_aadcbb166e915b47c745827535abc3a9f}} 
+\index{kolejka@{kolejka}!wolne@{wolne}}
+\index{wolne@{wolne}!kolejka@{kolejka}}
+\subsubsection{\texorpdfstring{wolne}{wolne}}
+{\footnotesize\ttfamily int wolne}
+
+flaga informujaca, czy przy okienku stoi aktualnie klient 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_sym_bank_8c}{Sym\+Bank.\+c}\end{DoxyCompactItemize}

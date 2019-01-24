@@ -1,3 +1,13 @@
+ /*!
+* \file SymBank.c
+* \brief     Plik zrodlowy Projektu SymBank - symulatora kolejki w banku
+* \author    Mateusz Przelaskowski
+* \version   1.0.0
+* \date      24.01.2019
+* \copyright Mateusz Przelaskowski wszelkie prawa zastrzezone
+*/
+
+
 // SymBank - - symulator Banku 
 // rozp. 15.12.2018
 // tu musi byc wiele funkcji, budowa modularna to same plusy: D
@@ -15,6 +25,7 @@
  * 
  * 
  */
+
  
  //dyrektywy wstepne takie tam 
  
@@ -28,40 +39,58 @@
 
  
 //struktury
+
+/*!
+* @brief Struktura przechowująca w rejestrze wartosci dlugosci kolejki i liczbe obsluzonych klientow 
+*/
 typedef struct{
-		int dlugosc;
-		long int obsluzeni;
+		int dlugosc; /*!< dlugosc kolejki*/
+		long int obsluzeni; /*!< ilosc obsluzonych klientow przez okienko*/
 	}sekunda;
-		
- typedef struct{
-		double srednia;
-		double odchylenie;
+
+
+/*!
+* @brief Struktura przechowująca wartosci rozkladu czasu obslugi w poszczegolnych okienkach.
+*/
+typedef struct{
+		double srednia;/*!< sredni czas obslugi przy okienku*/
+		double odchylenie;/*!< odchylenie od sredniego czasu*/
 	 }okienko;
+
+/*!
+* @brief Struktura przechowująca dane niezbedne do symulacji, wyekstrahowane z pliku
+*/
 	 
 typedef struct{
-		double klienci_srednio;
-		double odchylenie;
-		int liczba_okienek;
-		okienko *okienka;
-		long int czas_symulacji;
-		long int skok;
+		double klienci_srednio; /*!< srednia liczba klientow wchodzacych do banku w ciagu godziny*/
+		double odchylenie; /*!< odchylenie od sredniej liczby klientow wchodzacych do banku*/
+		int liczba_okienek; /*!< liczba okienek w banku*/
+		okienko *okienka; /*!< tablica struktur okienko informujacych o rozkladach czasu w poszczegolnych okienkach*/
+		long int czas_symulacji; /*!< czas trwania symualcji w sekundach*/
+		long int skok; /*!< skok czasowy co ktory wyswietlana jest wartoc wynikowa*/
 	}dane;
 	
+/*!
+* @brief Struktura bedaca elementem kolejki - klientem czekajacym na swoja kolej
+*/	
+	
 struct osoba{
-		struct osoba *nastepny;	
+		struct osoba *nastepny;	/*!< wskaznik na nastepna osobe w kolejce*/
 	};typedef struct osoba osoba; 
 					
+ /*!
+* @brief Struktura bedaca elementem kolejki - klientem czekajacym na swoja kolej
+*/	
  
 typedef struct{
-		osoba *pierwszy;
-		osoba *ostatni;
-		int dlugosc;
-		okienko rozklad;
-		int wolne;
-		int dowidzenia;
-		long int klienci;
-		long int czas_obslugi;
-		sekunda *rejestr;
+		osoba *pierwszy;/*!< wskaznik do pierwszej osoby w kolejce*/
+		osoba *ostatni; /*!< wskaznik do ostatniej osoby  w kolejce*/
+		int dlugosc; /*!< dlugosc kolejki*/
+		okienko rozklad; /*!< zmienna strukturalna zawierajaca wartosc rozkladu czasu obslugi przez dane okienko*/
+		int wolne; /*!< flaga informujaca, czy przy okienku stoi aktualnie klient*/
+		int dowidzenia; /*!< wartosc ogolnego czasu symulacji, w ktorym klient stojacy przy okienku odchodzi od niego*/
+		long int klienci; /*!< ogolna liczba obsluzonych przez okienko klientow*/
+		sekunda *rejestr; /*!< wskaznik do rejestru */
 	}kolejka;
 	
 
@@ -75,7 +104,12 @@ int najkrotsza(kolejka *, dane *);
 void wyswietl(kolejka *, int, long int, long int);
 
 
-
+/*!
+* \fn int main (void)
+* \brief Funkcja main(), serce programu
+* \details Funkcja main zawierajaca glownie symulacje kolejki. Poboczne zadania programu zostaly rozdzielone do innych funkcji
+* \return Funkcja zwraca 0 w przypadku poprawnego wykonania programu
+*/
 int main(void)
 {
 	
@@ -163,7 +197,6 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 										{
 											kolejki[a].klienci++; //dodajemy klienta ktory wlasnie odchodzi do calkowitej liczby obsluzonych przy okienku
 											kolejki[a].wolne = 1; // pani w okienku mowi ' zapraszam!'
-											
 										
 										}
 							
@@ -192,15 +225,22 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 	
 	
 	}
-	
+
 wyswietl(kolejki, pakiet->liczba_okienek, pakiet->czas_symulacji, pakiet->skok);	
-	
+
 	
 }	
 }
 
 
-
+/*!
+* \fn gauss(double srednia, double odchylenie)
+* \brief Funkcja generuje liczby pseudolosowe o rozkladzie Gaussa
+* \details Funkcja korzysta z biegunowej metody Marsaglia generujac liczbe o rozkladzie zadanym parametrami.
+* \param srednia - wartosc oczekiwana (srednia) rozkladu Gaussa dla generowanej liczby
+* \param odchylenie - wartosc odchylenia standardowego od wartosci oczekiwanej
+* \return Funkcja zwraca wygenerowana liczbe pseudolosowa
+*/
 double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe liczby o rozkladzie normalnym o podanej wartosci oczekiwanej (sredniej) i odchyleniu standardowym.
 {
 	double s, losowa1, losowa2;
@@ -212,6 +252,12 @@ double gauss(double srednia, double odchylenie)  //funkcja generujaca losowe lic
 	return srednia + (odchylenie * losowa1 * sqrt((-2*log(s)) / s));  // działa!!. na koncu tego pliku zrodlowego zawarłem zakomentarzowany kod testujący mój generator. 
 }
 	
+/*!
+* \fn menu(void)
+* \brief Kontakt z uzytkownikiem i sterowanie funkcjami programu
+* \details Wyswietla graficzne menu i uruchamia poszczegolne, wywolane przez uzytkownika, funckje programu
+* \return Funkcja nie zwraca zadnej wartosci
+*/
 
 void menu(void)
 {
@@ -245,7 +291,12 @@ void menu(void)
 		}
 	}
 	
-	
+/*!
+* \fn plik_wzorcowy(void)
+* \brief Zapisanie na komputerze pliku z wzorem formatu pliku wejsciowego programu
+* \details Zapisuje w katalogu roboczym plik SymBank_format_pliku.txt ze sformatowanymi przykladowymi danymi wejsciowymi
+* \return Zwraca 0 w przypadku powodzenia operacji i 1 w przypadku problemu
+*/	
 int plik_wzorcowy(void)
 {
 	FILE *wzorzec;
@@ -263,6 +314,17 @@ int plik_wzorcowy(void)
 	return 0;
 	
 }
+
+
+
+
+/*!
+* \fn kontrolapliku(char *nazwapliku)
+* \brief Funkcja kontrolujaca poprawnosc danych wejsciowych
+* \details Przeczesuje plik wejsciowy w kierunku zgodnosci z obowiazujacym formatem
+* \param nazwapliku - nazwa pliku z danymi wejsciowymi stworzonego przez uzytkownika 
+* \return Zwraca 0 w przypadku powodzenia, 1 lub 2 gdy pojawi sie blad
+*/
 
 int kontrolapliku(char *nazwapliku)
 {
@@ -316,7 +378,15 @@ int kontrolapliku(char *nazwapliku)
 	return 0;
 }
 	
-	
+
+/*!
+* \fn wczytanie(char *nazwapliku)
+* \brief Wczytuje dane wejsciowe z pliku do programu
+* \details Wszystkie dane umieszcza w jednej zmiennej strukturalnej
+* \param nazwapliku - nazwa wejsciowego pliku z danymi
+* \return pakiet - zmienna strukturalna zawierajaca wszystkie dane niezbedne do przeprowadzenia symulacji
+*/	
+
 dane * wczytanie(char *nazwapliku)
 {
 	dane *pakiet;
@@ -385,6 +455,14 @@ switch (jednostka_skoku)
 		return pakiet;
 	}
 	
+/*!
+* \fn najkrotsza(kolejka *kolejki, dane *info)
+* \brief Funkcja wyznacza najkrotsza kolejke
+* \details Znajduje kolejke o najmniejszej dlugosci lub losuje, gdy takich kolejek jest kilka
+* \param kolejki - tablica zmiennych opisujacych kazda kolejke z osobna
+* \param info - pakiet danych o symulacji, w tym informacja o liczbie kolejek
+* \return indeks_najkrotszej - indeks komorki tablicy z informacjami o kolejkach o najmniejszej dlugosci
+*/
 
 int najkrotsza(kolejka *kolejki, dane *info)
 {
@@ -393,7 +471,7 @@ int najkrotsza(kolejka *kolejki, dane *info)
 	
 	
 	
-	for(b=1;b<info->liczba_okienek;b++)
+	for(b=1;b<(info->liczba_okienek);b++)
 		{
 			if(kolejki[b].dlugosc < minimum) {minimum = kolejki[b].dlugosc; powtorzenia =0; flaga = 0; indeks_najkrotszej = b;}
 			if(kolejki[b].dlugosc == minimum) {powtorzenia++; flaga = 1;}// jesli jest kilka najkrotszych kolejek, trzeba zrobic tak, by klient wybieral jedna z tych kolejek losowo.
@@ -406,8 +484,8 @@ int najkrotsza(kolejka *kolejki, dane *info)
 				tablica = (int *)malloc((powtorzenia+1)*sizeof(int));
 				dlugosc_tablicy = powtorzenia+1;
 				
-				for(b=0;b<info->liczba_okienek;b++) {if (kolejki[b].dlugosc == minimum) {tablica[dlugosc_tablicy-powtorzenia-1] = b;powtorzenia--;}}    
-				wylosowany_indeks = rand()%dlugosc_tablicy;  // no wiec jesli jest kilka najkrotszych kolejek, tworze tablice i umieszczam w niej ich indeksy, zeby pozniej jakis z nich wylosowac i zwrocic .
+				for(b=0;b<(info->liczba_okienek);b++) {if (kolejki[b].dlugosc == minimum) {tablica[dlugosc_tablicy-powtorzenia-1] = b;powtorzenia--;}}    
+				wylosowany_indeks = (rand())%dlugosc_tablicy;  // no wiec jesli jest kilka najkrotszych kolejek, tworze tablice i umieszczam w niej ich indeksy, zeby pozniej jakis z nich wylosowac i zwrocic .
 				indeks_najkrotszej = tablica[wylosowany_indeks];
 				free(tablica);
 				return indeks_najkrotszej;
@@ -416,6 +494,18 @@ int najkrotsza(kolejka *kolejki, dane *info)
 	return indeks_najkrotszej; 
 	
 }
+	
+	
+/*!
+* \fn wyswietl(kolejka *kolejki, int liczba_kolejek,long int czas, long int skok)
+* \brief Funkcja wyswietla wyniki symulacji
+* \details Pokazuje czas symulacji, liczbe obsluzonych klientow oraz dlugosc kolejek
+* \param kolejki - tablica zmiennych typu kolejka zawierajacych informacje o kolejkach do okienek
+* \param liczba_kolejek - liczba okienek (i kolejek) w banku
+* \param czas - czas symulacji w sekundach
+* \param skok - interwal czasowy co ktory wyswietlana jest wartosc wynikowa
+* \return Funkcja nie zwraca wartosci
+* */
 	
 void wyswietl(kolejka *kolejki, int liczba_kolejek,long int czas, long int skok)
 {

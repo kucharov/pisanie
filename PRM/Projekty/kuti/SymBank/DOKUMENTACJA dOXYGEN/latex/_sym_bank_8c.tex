@@ -1,0 +1,208 @@
+\hypertarget{_sym_bank_8c}{}\section{Sym\+Bank.\+c File Reference}
+\label{_sym_bank_8c}\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+
+
+Plik zrodlowy Projektu Sym\+Bank -\/ symulatora kolejki w banku.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsekunda}{sekunda}
+\begin{DoxyCompactList}\small\item\em Struktura przechowująca w rejestrze wartosci dlugosci kolejki i liczbe obsluzonych klientow. \end{DoxyCompactList}\item 
+struct \hyperlink{structokienko}{okienko}
+\begin{DoxyCompactList}\small\item\em Struktura przechowująca wartosci rozkladu czasu obslugi w poszczegolnych okienkach. \end{DoxyCompactList}\item 
+struct \hyperlink{structdane}{dane}
+\begin{DoxyCompactList}\small\item\em Struktura przechowująca dane niezbedne do symulacji, wyekstrahowane z pliku. \end{DoxyCompactList}\item 
+struct \hyperlink{structosoba}{osoba}
+\begin{DoxyCompactList}\small\item\em Struktura bedaca elementem kolejki -\/ klientem czekajacym na swoja kolej. \end{DoxyCompactList}\item 
+struct \hyperlink{structkolejka}{kolejka}
+\begin{DoxyCompactList}\small\item\em Struktura bedaca elementem kolejki -\/ klientem czekajacym na swoja kolej. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_sym_bank_8c_a86f62b6fe0a7f1b20780c77d0a8ce354}\label{_sym_bank_8c_a86f62b6fe0a7f1b20780c77d0a8ce354}} 
+typedef struct \hyperlink{structosoba}{osoba} {\bfseries osoba}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_sym_bank_8c_ad16e5e62f3579a7048e6b981b172885e}{menu} (void)
+\begin{DoxyCompactList}\small\item\em Kontakt z uzytkownikiem i sterowanie funkcjami programu. \end{DoxyCompactList}\item 
+double \hyperlink{_sym_bank_8c_a525c1f519b0aa9b5deb41473bab81dc5}{gauss} (double, double)
+\begin{DoxyCompactList}\small\item\em Funkcja generuje liczby pseudolosowe o rozkladzie Gaussa. \end{DoxyCompactList}\item 
+int \hyperlink{_sym_bank_8c_abb5276d79ae6741b0c6691df97a1bb64}{plik\+\_\+wzorcowy} (void)
+\begin{DoxyCompactList}\small\item\em Zapisanie na komputerze pliku z wzorem formatu pliku wejsciowego programu. \end{DoxyCompactList}\item 
+int \hyperlink{_sym_bank_8c_a4ade33be0b82425c8eed8520b784e7c4}{kontrolapliku} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Funkcja kontrolujaca poprawnosc danych wejsciowych. \end{DoxyCompactList}\item 
+\hyperlink{structdane}{dane} $\ast$ \hyperlink{_sym_bank_8c_a2c397178ec13517e1bb92853943e078d}{wczytanie} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Wczytuje dane wejsciowe z pliku do programu. \end{DoxyCompactList}\item 
+int \hyperlink{_sym_bank_8c_aaecb2f92be527e0bffd00d1232b8a707}{najkrotsza} (\hyperlink{structkolejka}{kolejka} $\ast$, \hyperlink{structdane}{dane} $\ast$)
+\begin{DoxyCompactList}\small\item\em Funkcja wyznacza najkrotsza kolejke. \end{DoxyCompactList}\item 
+void \hyperlink{_sym_bank_8c_a5c732d720e2cd508ee80bd02c44d2ba2}{wyswietl} (\hyperlink{structkolejka}{kolejka} $\ast$, int, long int, long int)
+\begin{DoxyCompactList}\small\item\em Funkcja wyswietla wyniki symulacji. \end{DoxyCompactList}\item 
+int \hyperlink{_sym_bank_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em Funkcja \hyperlink{_sym_bank_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}, serce programu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Plik zrodlowy Projektu Sym\+Bank -\/ symulatora kolejki w banku. 
+
+\begin{DoxyAuthor}{Author}
+Mateusz Przelaskowski 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+24.\+01.\+2019 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Mateusz Przelaskowski wszelkie prawa zastrzezone 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_sym_bank_8c_a525c1f519b0aa9b5deb41473bab81dc5}\label{_sym_bank_8c_a525c1f519b0aa9b5deb41473bab81dc5}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!gauss@{gauss}}
+\index{gauss@{gauss}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{gauss()}{gauss()}}
+{\footnotesize\ttfamily double gauss (\begin{DoxyParamCaption}\item[{double}]{srednia,  }\item[{double}]{odchylenie }\end{DoxyParamCaption})}
+
+
+
+Funkcja generuje liczby pseudolosowe o rozkladzie Gaussa. 
+
+Funkcja korzysta z biegunowej metody Marsaglia generujac liczbe o rozkladzie zadanym parametrami. 
+\begin{DoxyParams}{Parameters}
+{\em srednia} & -\/ wartosc oczekiwana (srednia) rozkladu Gaussa dla generowanej liczby \\
+\hline
+{\em odchylenie} & -\/ wartosc odchylenia standardowego od wartosci oczekiwanej \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Funkcja zwraca wygenerowana liczbe pseudolosowa 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_a4ade33be0b82425c8eed8520b784e7c4}\label{_sym_bank_8c_a4ade33be0b82425c8eed8520b784e7c4}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!kontrolapliku@{kontrolapliku}}
+\index{kontrolapliku@{kontrolapliku}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{kontrolapliku()}{kontrolapliku()}}
+{\footnotesize\ttfamily int kontrolapliku (\begin{DoxyParamCaption}\item[{char $\ast$}]{nazwapliku }\end{DoxyParamCaption})}
+
+
+
+Funkcja kontrolujaca poprawnosc danych wejsciowych. 
+
+Przeczesuje plik wejsciowy w kierunku zgodnosci z obowiazujacym formatem 
+\begin{DoxyParams}{Parameters}
+{\em nazwapliku} & -\/ nazwa pliku z danymi wejsciowymi stworzonego przez uzytkownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca 0 w przypadku powodzenia, 1 lub 2 gdy pojawi sie blad 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{_sym_bank_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!main@{main}}
+\index{main@{main}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Funkcja \hyperlink{_sym_bank_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}, serce programu. 
+
+Funkcja main zawierajaca glownie symulacje kolejki. Poboczne zadania programu zostaly rozdzielone do innych funkcji \begin{DoxyReturn}{Returns}
+Funkcja zwraca 0 w przypadku poprawnego wykonania programu 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_ad16e5e62f3579a7048e6b981b172885e}\label{_sym_bank_8c_ad16e5e62f3579a7048e6b981b172885e}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!menu@{menu}}
+\index{menu@{menu}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void menu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Kontakt z uzytkownikiem i sterowanie funkcjami programu. 
+
+Wyswietla graficzne menu i uruchamia poszczegolne, wywolane przez uzytkownika, funckje programu \begin{DoxyReturn}{Returns}
+Funkcja nie zwraca zadnej wartosci 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_aaecb2f92be527e0bffd00d1232b8a707}\label{_sym_bank_8c_aaecb2f92be527e0bffd00d1232b8a707}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!najkrotsza@{najkrotsza}}
+\index{najkrotsza@{najkrotsza}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{najkrotsza()}{najkrotsza()}}
+{\footnotesize\ttfamily int najkrotsza (\begin{DoxyParamCaption}\item[{\hyperlink{structkolejka}{kolejka} $\ast$}]{kolejki,  }\item[{\hyperlink{structdane}{dane} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyznacza najkrotsza kolejke. 
+
+Znajduje kolejke o najmniejszej dlugosci lub losuje, gdy takich kolejek jest kilka 
+\begin{DoxyParams}{Parameters}
+{\em kolejki} & -\/ tablica zmiennych opisujacych kazda kolejke z osobna \\
+\hline
+{\em info} & -\/ pakiet danych o symulacji, w tym informacja o liczbie kolejek \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indeks\+\_\+najkrotszej -\/ indeks komorki tablicy z informacjami o kolejkach o najmniejszej dlugosci 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_abb5276d79ae6741b0c6691df97a1bb64}\label{_sym_bank_8c_abb5276d79ae6741b0c6691df97a1bb64}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!plik\+\_\+wzorcowy@{plik\+\_\+wzorcowy}}
+\index{plik\+\_\+wzorcowy@{plik\+\_\+wzorcowy}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{plik\+\_\+wzorcowy()}{plik\_wzorcowy()}}
+{\footnotesize\ttfamily int plik\+\_\+wzorcowy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Zapisanie na komputerze pliku z wzorem formatu pliku wejsciowego programu. 
+
+Zapisuje w katalogu roboczym plik Sym\+Bank\+\_\+format\+\_\+pliku.\+txt ze sformatowanymi przykladowymi danymi wejsciowymi \begin{DoxyReturn}{Returns}
+Zwraca 0 w przypadku powodzenia operacji i 1 w przypadku problemu 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_a2c397178ec13517e1bb92853943e078d}\label{_sym_bank_8c_a2c397178ec13517e1bb92853943e078d}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!wczytanie@{wczytanie}}
+\index{wczytanie@{wczytanie}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{wczytanie()}{wczytanie()}}
+{\footnotesize\ttfamily \hyperlink{structdane}{dane} $\ast$ wczytanie (\begin{DoxyParamCaption}\item[{char $\ast$}]{nazwapliku }\end{DoxyParamCaption})}
+
+
+
+Wczytuje dane wejsciowe z pliku do programu. 
+
+Wszystkie dane umieszcza w jednej zmiennej strukturalnej 
+\begin{DoxyParams}{Parameters}
+{\em nazwapliku} & -\/ nazwa wejsciowego pliku z danymi \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pakiet -\/ zmienna strukturalna zawierajaca wszystkie dane niezbedne do przeprowadzenia symulacji 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sym_bank_8c_a5c732d720e2cd508ee80bd02c44d2ba2}\label{_sym_bank_8c_a5c732d720e2cd508ee80bd02c44d2ba2}} 
+\index{Sym\+Bank.\+c@{Sym\+Bank.\+c}!wyswietl@{wyswietl}}
+\index{wyswietl@{wyswietl}!Sym\+Bank.\+c@{Sym\+Bank.\+c}}
+\subsubsection{\texorpdfstring{wyswietl()}{wyswietl()}}
+{\footnotesize\ttfamily void wyswietl (\begin{DoxyParamCaption}\item[{\hyperlink{structkolejka}{kolejka} $\ast$}]{kolejki,  }\item[{int}]{liczba\+\_\+kolejek,  }\item[{long int}]{czas,  }\item[{long int}]{skok }\end{DoxyParamCaption})}
+
+
+
+Funkcja wyswietla wyniki symulacji. 
+
+Pokazuje czas symulacji, liczbe obsluzonych klientow oraz dlugosc kolejek 
+\begin{DoxyParams}{Parameters}
+{\em kolejki} & -\/ tablica zmiennych typu kolejka zawierajacych informacje o kolejkach do okienek \\
+\hline
+{\em liczba\+\_\+kolejek} & -\/ liczba okienek (i kolejek) w banku \\
+\hline
+{\em czas} & -\/ czas symulacji w sekundach \\
+\hline
+{\em skok} & -\/ interwal czasowy co ktory wyswietlana jest wartosc wynikowa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Funkcja nie zwraca wartosci 
+\end{DoxyReturn}
