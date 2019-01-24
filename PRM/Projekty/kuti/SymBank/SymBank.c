@@ -44,6 +44,7 @@ typedef struct{
 		int liczba_okienek;
 		okienko *okienka;
 		long int czas_symulacji;
+		int skok;
 	}dane;
 	
 struct osoba{
@@ -71,6 +72,7 @@ int plik_wzorcowy(void);
 int kontrolapliku(char *);
 dane * wczytanie(char *);
 int najkrotsza(kolejka *, dane *);
+void wyswietl(kolejka *, int, long int, long int);
 
 
 
@@ -79,9 +81,9 @@ int main(void)
 	
 //zmienne w main()
 char *nazwa_wejscia;
-int testwejscia, a, wchodzacy, interwal,wolne = 1, najkrotsza_indeks, czas_obslugi;
+int testwejscia, a, wchodzacy,wolne = 1, najkrotsza_indeks, czas_obslugi;
 dane *pakiet;
-long long int czas; 
+long long int czas, interwal; 
 kolejka *kolejki;
 double los;
 osoba  *nowy_klient, *zegnam;
@@ -101,12 +103,12 @@ do{
 	free(nazwa_wejscia);												 //oszczednosc miejsca, nie bede juz korzystac z tej zmiennej.
 	
 	
-{	/* printf("\nklienci: srednia: %lf  odchylenie: %lf   czas symulacji (s): %ld", pakiet->klienci_srednio, pakiet->odchylenie, pakiet->czas_symulacji);
+{	 /*printf("\nklienci: srednia: %lf  odchylenie: %lf   czas symulacji (s): %ld", pakiet->klienci_srednio, pakiet->odchylenie, pakiet->czas_symulacji);
 		int testlicznik; 
 		for(testlicznik=0;testlicznik<(pakiet->liczba_okienek); testlicznik++)
 		{
 			printf("\nokienko %d: srednia: %lf  odchylenie: %lf", testlicznik+1, pakiet->okienka[testlicznik].srednia, pakiet->okienka[testlicznik].odchylenie);
-		}return 0; */  
+		}return 0; */
 }	
 
 
@@ -122,16 +124,18 @@ for(a=0;a<(pakiet->liczba_okienek);a++)
 			kolejki[a].rejestr = (sekunda *)malloc(pakiet->czas_symulacji * sizeof(sekunda)); 
 			kolejki[a].dowidzenia = 0; 
 			kolejki[a].wolne = 1;
-			kolejki[a].dlugosc = 0;}	//ponadto, w kazdej kolejce tworzymy rejestr monitorujacy dlugosc i liczbe obsluzonych klientow i sygnalizujemy, ze na poczatku symulacji przeciez wszystkie okienka sa wolne.
+			kolejki[a].dlugosc = 0;
+			kolejki[a].klienci = 0; 
+		}	//ponadto, w kazdej kolejce tworzymy rejestr monitorujacy dlugosc i liczbe obsluzonych klientow i sygnalizujemy, ze na poczatku symulacji przeciez wszystkie okienka sa wolne.
 
 
 for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulująca
 	{
 		if(czas%3600 == 0) //jako ze w danych sterujacych podano srednia czestotliwosc wchodzenia klientow / godzine, godzina jest wyjsciową jednostką czasu dla zmiany liczby wchodzących klientów - czyli co godzinę liczba ta się zmienia, co wykonuje niniejsza pętla while
 			{
-				los = gauss(pakiet->klienci_srednio, pakiet->odchylenie); 	// uzywamy mojej super funkcji
-				wchodzacy = nearbyint(los);		 //tyle ludzi wejdzie do banku w ciagu aktualnej godziny. Symulacja jest realna wiec zaokraglamy do najblizszej liczby calkowitej - nikt nie widzial polowki klienta wchodzacej do banku
-				interwal = (60 * 60)/wchodzacy; 		// co tyle sekund srednio wejdzie do banku nowy klient w ciagu biezacej godziny. Czesc ulamkowa i tak obcinamy, bo glowny zegar symulacji ma rozdzielczosc 1 sekundy
+				do los = gauss(pakiet->klienci_srednio, pakiet->odchylenie); while(los<=0); 	// uzywamy mojej super funkcji. czas nie moze byc ujemny wiec jesil wylosuje sie takowy, wynik jest odrzucany i losujemy do skutku.
+				wchodzacy = nearbyint(los);		 //tyle ludzi wejdzie do banku w ciagu aktualnej godziny. Symulacja jest realna wiec zaokraglamy do najblizszej liczby calkowitej - nikt nigdy nie widzial polowki klienta wchodzacej do banku
+				interwal = (60 * 60)/(double)wchodzacy; 		// co tyle sekund srednio wejdzie do banku nowy klient w ciagu biezacej godziny. Czesc ulamkowa i tak obcinamy, bo glowny zegar symulacji ma rozdzielczosc 1 sekundy
 				
 			}
 			
@@ -139,48 +143,49 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 		if((czas%interwal)==0) // co zadany interwal - wynikajacy z zadanej ilosci klientow na jednostke czasu - uruchamiana jest instrukcja wejscia klienta do banku i ustawienia sie w kolejce.
 			{
 				najkrotsza_indeks = najkrotsza(kolejki, pakiet);// napisana wczesniej funkcja znajduje ( i jesli trzeba, losuje) najkrotsza kolejke do ktorej wstąpi klient
-				
-				nowy_klient = (osoba *)malloc(sizeof(osoba));
-				if(kolejki[najkrotsza_indeks].dlugosc == 0) {kolejki[najkrotsza_indeks].pierwszy = nowy_klient; kolejki[najkrotsza_indeks].ostatni = nowy_klient; kolejki[najkrotsza_indeks].dlugosc = 1;}
+				printf("%d",najkrotsza_indeks );
+				nowy_klient = (osoba *)malloc(sizeof(osoba)); //przydzial pamieci dla nowego klienta
+				if(kolejki[najkrotsza_indeks].dlugosc == 0) {printf("dupa");kolejki[najkrotsza_indeks].pierwszy = nowy_klient; kolejki[najkrotsza_indeks].ostatni = nowy_klient; kolejki[najkrotsza_indeks].dlugosc = 1;}
 				else {
-						kolejki[najkrotsza_indeks].dlugosc++;
-						kolejki[najkrotsza_indeks].ostatni->nastepny = nowy_klient;
+						printf("goowno");kolejki[najkrotsza_indeks].dlugosc++;
+						kolejki[najkrotsza_indeks].ostatni->nastepny = nowy_klient; 
 						kolejki[najkrotsza_indeks].ostatni = nowy_klient;
+					
 					}
 					
 				}	
 			// teraz czas na obsluge kolejek przez okienka. tworzę pętle, w ktorej po kolei wszystkie okienka beda przyjmowac klientow. Jako ze wszystko dzieje sie w glownej petli symulacyjnej ktorej skok wynosi 1 s, tworzy się zludzenie, ze okienka pracują jednoczesnie.
 			
 			
-			for(a=0;a<pakiet->liczba_okienek;a++)
+			for(a=0;a<pakiet->liczba_okienek;a++) // w tej petli po kolei swoja prace wykonuja wszystkie okienka.
 						{
 							
-							if(czas==kolejki[a].dowidzenia && czas != 0)// jesli czas poprzedniej wizyty (wylosowany wczesniej) dobiegl konca, zegnamy klienta zapisujac informacje o nim w rejestrze i wywieszamy informacje WOLNE !
+							if(czas==kolejki[a].dowidzenia && czas != 0)// jesli czas poprzedniej wizyty (wylosowany wczesniej) dobiegl konca, dodajemy 1 do liczy obsluzonych klientow i wywieszamy informacje WOLNE !
 										{
 											kolejki[a].klienci++; //dodajemy klienta ktory wlasnie odchodzi do calkowitej liczby obsluzonych przy okienku
 											kolejki[a].wolne = 1; // pani w okienku mowi ' zapraszam!'
 											
-											
+										
 										}
 							
 							
-							if(wolne==1 && kolejki[a].dlugosc != 0)
+							if(kolejki[a].wolne==1 && kolejki[a].dlugosc != 0)// jesli okienko jest wolne i w ogole ktos czeka w kolejce, pierwsza osoba z kolejki podchodzi do okienkaL
 										{
-											los = gauss(kolejki[a].rozklad.srednia, kolejki[a].rozklad.odchylenie); // losujemy czas w minutach spedzony przy okienku przez nadchodzacego klienta.
-											czas_obslugi = nearbyint(los * 60); // czas obslugi klienta w sekundach
+											do los = gauss(kolejki[a].rozklad.srednia, kolejki[a].rozklad.odchylenie); while(los<=0); // losujemy czas w minutach spedzony przy okienku klienta.
+											czas_obslugi = nearbyint(los * 60); // czas obslugi klienta w sekundach ( bo w pliku podawany jest on w minutach )
 											kolejki[a].dowidzenia = czas + czas_obslugi; // dowidzenia jest czasem, kiedy klient opusci okienko.
 											kolejki[a].wolne = 0; // wywieszamy informacje ZAJETE - nastepne losowanie czasu dopiero, gdy czas obslugi dobiegnie konca	
-											
+											printf("dowidzenia: %d", kolejki[a].dowidzenia);
 											zegnam = kolejki[a].pierwszy;	// klient ktory wlasnie podchodzi od okienka.. 
 											kolejki[a].pierwszy = zegnam->nastepny;	// przekazuje palmę pierwszenstwa w kolejce osobie następnej...
 											kolejki[a].dlugosc--; 	// kolejka skraca sie o 1 .....
 											free(zegnam); // i dla kolejki klient juz nie istnieje, wymazujemy go z pamieci
-											return 0;
+											
 											
 										}	
 							
 							kolejki[a].rejestr[czas].dlugosc = kolejki[a].dlugosc;
-							kolejki[a].rejestr[czas].obsluzeni = kolejki[a].klienci;
+							kolejki[a].rejestr[czas].obsluzeni = kolejki[a].klienci; // stan obu wartosci, ktore mamy na koncu pokazac, zapisujemy na biezaco w rejestrze.
 							
 							
 						}
@@ -190,7 +195,7 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 	
 	}
 	
-	
+wyswietl(kolejki, pakiet->liczba_okienek, pakiet->czas_symulacji, pakiet->skok);	
 	
 	
 }	
@@ -250,6 +255,7 @@ int plik_wzorcowy(void)
 	if ((wzorzec = fopen("SymBank_format_pliku.txt", "w")) == NULL) {printf("\nBlad tworzenia pliku wzorcowego, sprobuj jeszcze raz w innej lokalizacji.\n"); return 1;}
 	
 	fprintf(wzorzec, "g 36				//do wyboru s/m/g/d/l Sekundy/Minuty/Godziny/Dni/Lata - czas trwania symulacji\n.");
+	fprintf(wzorzec, "\nskok:m 5		// s/m/g/d/l  (Sekundy/Minuty/Godziny/Dni/Lata) wartosci wynikowe(zalezne od czasu) pokazywane beda co okreslony tutaj odstep czasu.\n."); 
 	fprintf(wzorzec, "\ns:4				//srednia liczba na godzine osob przychodzacych do banku\no:3				//odchylenie standardowe od sredniej\n.				// segmenty oddzielamy kropka.\n");
 	fprintf(wzorzec, "okienka:3				// okreslamy liczbe okienek w banku\n.\ns:3				// po kolei - oddzielajac kropkami - podajemy parametry dla kazdego okienka\no:2.5\n.\ns:6				");
 	fprintf(wzorzec, "//sredni czas w minutach obslugi klienta przez urzedniczke\no:4				//");
@@ -275,6 +281,7 @@ int kontrolapliku(char *nazwapliku)
 	testznak = fgetc(plik);
 	if((testznak != 'm') && (testznak != 's') && (testznak != 'g') && (testznak != 'l') && (testznak != 'd')) blad = 1;
 	if((test = fscanf(plik, " %Lf", &sprawdzenie)) != 1) blad = 1;
+	if(testznak == 's' && (sprawdzenie != floorl(sprawdzenie))) {blad = 1; printf("\nLiczba sekund musi byc calkowita!!");}
 	fgetc(plik);
 	if((testznak = fgetc(plik)) != '.') blad = 1;
 	fgetc(plik);
@@ -381,12 +388,33 @@ int najkrotsza(kolejka *kolejki, dane *info)
 	
 }
 	
+void wyswietl(kolejka *kolejki, int liczba_kolejek,long int czas, long int skok)
+{
+		long int licznik, liczydlo;
+		
+		for(licznik=0;licznik<liczba_kolejek;licznik++)
+			{	printf("\n\nOKIENKO %ld\nsekunda	dlugosc kolejki		ilosc obsluzonych\n", licznik+1);
+				for(liczydlo=0;liczydlo<czas;liczydlo++)
+				{
+					printf("%ld\t\t%d\t\t\t%ld\n", liczydlo, kolejki[licznik].rejestr[liczydlo].dlugosc, kolejki[licznik].rejestr[liczydlo].obsluzeni);
+				
+				
+				}
+			}
+	
+	
+	
+	
+}	
 	
 	
 	
 	
 	
-	
-	
+	co jeszcze zrobic:
+	dodac do funkcji wczytaj skok
+	w ogole dodac skok
+	dodac kontrole np dla g:8   (zamiast s)
+	dodac opcje podawania czasu przy okienku w sekundach
 
 	

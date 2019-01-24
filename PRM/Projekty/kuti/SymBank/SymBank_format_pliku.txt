@@ -1,5 +1,7 @@
 g 36				//do wyboru s/m/g/d/l Sekundy/Minuty/Godziny/Dni/Lata - czas trwania symulacji
 .
+skok:m 5		// s/m/g/d/l  (Sekundy/Minuty/Godziny/Dni/Lata) wartosci wynikowe(zalezne od czasu) pokazywane beda co okreslony tutaj odstep czasu.
+.
 s:4				//srednia liczba na godzine osob przychodzacych do banku
 o:3				//odchylenie standardowe od sredniej
 .				// segmenty oddzielamy kropka.
