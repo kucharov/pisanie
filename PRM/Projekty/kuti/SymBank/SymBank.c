@@ -44,7 +44,7 @@ typedef struct{
 		int liczba_okienek;
 		okienko *okienka;
 		long int czas_symulacji;
-		int skok;
+		long int skok;
 	}dane;
 	
 struct osoba{
@@ -143,11 +143,10 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 		if((czas%interwal)==0) // co zadany interwal - wynikajacy z zadanej ilosci klientow na jednostke czasu - uruchamiana jest instrukcja wejscia klienta do banku i ustawienia sie w kolejce.
 			{
 				najkrotsza_indeks = najkrotsza(kolejki, pakiet);// napisana wczesniej funkcja znajduje ( i jesli trzeba, losuje) najkrotsza kolejke do ktorej wstąpi klient
-				printf("%d",najkrotsza_indeks );
 				nowy_klient = (osoba *)malloc(sizeof(osoba)); //przydzial pamieci dla nowego klienta
-				if(kolejki[najkrotsza_indeks].dlugosc == 0) {printf("dupa");kolejki[najkrotsza_indeks].pierwszy = nowy_klient; kolejki[najkrotsza_indeks].ostatni = nowy_klient; kolejki[najkrotsza_indeks].dlugosc = 1;}
+				if(kolejki[najkrotsza_indeks].dlugosc == 0) {kolejki[najkrotsza_indeks].pierwszy = nowy_klient; kolejki[najkrotsza_indeks].ostatni = nowy_klient; kolejki[najkrotsza_indeks].dlugosc = 1;}
 				else {
-						printf("goowno");kolejki[najkrotsza_indeks].dlugosc++;
+						kolejki[najkrotsza_indeks].dlugosc++;
 						kolejki[najkrotsza_indeks].ostatni->nastepny = nowy_klient; 
 						kolejki[najkrotsza_indeks].ostatni = nowy_klient;
 					
@@ -175,7 +174,6 @@ for(czas = 0; czas<pakiet->czas_symulacji; czas++) // główna pętla symulując
 											czas_obslugi = nearbyint(los * 60); // czas obslugi klienta w sekundach ( bo w pliku podawany jest on w minutach )
 											kolejki[a].dowidzenia = czas + czas_obslugi; // dowidzenia jest czasem, kiedy klient opusci okienko.
 											kolejki[a].wolne = 0; // wywieszamy informacje ZAJETE - nastepne losowanie czasu dopiero, gdy czas obslugi dobiegnie konca	
-											printf("dowidzenia: %d", kolejki[a].dowidzenia);
 											zegnam = kolejki[a].pierwszy;	// klient ktory wlasnie podchodzi od okienka.. 
 											kolejki[a].pierwszy = zegnam->nastepny;	// przekazuje palmę pierwszenstwa w kolejce osobie następnej...
 											kolejki[a].dlugosc--; 	// kolejka skraca sie o 1 .....
@@ -271,7 +269,7 @@ int kontrolapliku(char *nazwapliku)
 	int test, okienka, licznik, blad=0;
 	char testznak;
 	double kontrola;
-	long double sprawdzenie;
+	double sprawdzenie;
 	
 	
 	FILE *plik;
@@ -280,39 +278,52 @@ int kontrolapliku(char *nazwapliku)
 	
 	testznak = fgetc(plik);
 	if((testznak != 'm') && (testznak != 's') && (testznak != 'g') && (testznak != 'l') && (testznak != 'd')) blad = 1;
-	if((test = fscanf(plik, " %Lf", &sprawdzenie)) != 1) blad = 1;
+	if((test = fscanf(plik, " %lf", &sprawdzenie)) != 1) blad = 1;
 	if(testznak == 's' && (sprawdzenie != floorl(sprawdzenie))) {blad = 1; printf("\nLiczba sekund musi byc calkowita!!");}
 	fgetc(plik);
 	if((testznak = fgetc(plik)) != '.') blad = 1;
 	fgetc(plik);
-	if((test = fscanf(plik, "s:%lf", &kontrola)) != 1) blad = 1;
-	if((test = fscanf(plik, "\no:%lf", &kontrola)) != 1) blad = 1;
+	if((testznak = fgetc(plik)) != 's') blad = 1; if((testznak = fgetc(plik)) != 'k') blad = 1; if((testznak = fgetc(plik)) != 'o') blad = 1; if((testznak = fgetc(plik)) != 'k') blad = 1;
+	if((testznak = fgetc(plik)) != ':') blad = 1;
+	testznak = fgetc(plik);
+	if ((testznak != 'm') && (testznak != 's') && (testznak != 'g') && (testznak != 'l') && (testznak != 'd')) blad = 1;
+	if ((testznak = fgetc(plik)) != ' ') blad = 1;
+	if ((test = fscanf(plik, "%lf\n.\n", &sprawdzenie)) != 1) blad = 1;
+	if((testznak = fgetc(plik)) != 's') blad = 1;if((testznak = fgetc(plik)) != ':') blad = 1;
+	if((test = fscanf(plik, "%lf", &kontrola)) != 1) blad = 1;
+	if((testznak = fgetc(plik)) != '\n') blad = 1; if((testznak = fgetc(plik)) != 'o') blad = 1; if((testznak = fgetc(plik)) != ':') blad = 1;
+	if((test = fscanf(plik, "%lf", &kontrola)) != 1) blad = 1;
 	fgetc(plik);
-	if((testznak = fgetc(plik)) != '.') blad = 1;
-	if((test = fscanf(plik, "\nokienka:%d", &okienka)) != 1) blad = 1;
+	if((testznak = fgetc(plik)) != '.') blad = 1; if((testznak = fgetc(plik)) != '\n') blad = 1;
+	if((testznak = fgetc(plik)) != 'o') blad = 1; if((testznak = fgetc(plik)) != 'k') blad = 1; if((testznak = fgetc(plik)) != 'i') blad = 1; if((testznak = fgetc(plik)) != 'e') blad = 1;
+	if((testznak = fgetc(plik)) != 'n') blad = 1; if((testznak = fgetc(plik)) != 'k') blad = 1; if((testznak = fgetc(plik)) != 'a') blad = 1; if((testznak = fgetc(plik)) != ':') blad = 1;
+	if((test = fscanf(plik, "%d", &okienka)) != 1) blad = 1;
 	fgetc(plik);
 	if((testznak = fgetc(plik)) != '.') blad = 1;
 	fgetc(plik);
 	for(licznik=1;licznik<=okienka;licznik++)
-	{
-			if((test =fscanf(plik, "s:%lf", &kontrola)) != 1) blad = 1;
-			if((test =fscanf(plik, "\no:%lf", &kontrola)) != 1) blad = 1;
+		{
+			if((testznak = fgetc(plik)) != 's') blad = 1;if((testznak = fgetc(plik)) != ':') blad = 1;
+			if((test = fscanf(plik, "%lf", &kontrola)) != 1) blad = 1;
+			if((testznak = fgetc(plik)) != '\n') blad = 1; if((testznak = fgetc(plik)) != 'o') blad = 1; if((testznak = fgetc(plik)) != ':') blad = 1;
+			if((test = fscanf(plik, "%lf", &kontrola)) != 1) blad = 1;
 			fgetc(plik);
 			if((testznak = fgetc(plik)) != '.') blad = 1;
 			fgetc(plik);
-	}
+		}
 	fclose(plik);		
 	if (blad ==1) {printf("\nFormat pliku jest nieprawidlowy!\n"); return 2;}	
 	return 0;
-	}
+}
 	
 	
 dane * wczytanie(char *nazwapliku)
 {
 	dane *pakiet;
 	long double dlugosc_symulacji;
-	char jednostka_czasu;
+	char jednostka_czasu, jednostka_skoku;
 	int licznik;
+	double schowek;
 
 	FILE *plik = fopen(nazwapliku, "r");
 	pakiet = (dane *)malloc(sizeof(dane));
@@ -320,6 +331,10 @@ dane * wczytanie(char *nazwapliku)
 	
 	jednostka_czasu = fgetc(plik);
 	fscanf(plik, " %Lf", &dlugosc_symulacji);
+	fgetc(plik); fgetc(plik); fgetc(plik);
+	fgetc(plik); fgetc(plik); fgetc(plik);
+	fgetc(plik); fgetc(plik); jednostka_skoku = fgetc(plik);
+	fscanf(plik, " %lf", &schowek);
 	fgetc(plik); fgetc(plik); fgetc(plik);
 	fscanf(plik, "s:%lf", &pakiet->klienci_srednio);
 	fscanf(plik, "\no:%lf", &pakiet->odchylenie);
@@ -346,6 +361,20 @@ dane * wczytanie(char *nazwapliku)
 				case 'd': pakiet->czas_symulacji = 60 * 60 * 24 * nearbyintl(dlugosc_symulacji); break;
 				
 				case 'l': pakiet->czas_symulacji = 60 * 60 * 24 * 365 * nearbyintl(dlugosc_symulacji); break;				
+			}
+			
+			
+switch (jednostka_skoku)
+			{
+				case 's': if (schowek < 0.5) pakiet->skok = 1; else pakiet->skok = nearbyint(schowek); break;
+				
+				case 'm': if (schowek < 0.5) pakiet->skok = 1 * 60 ; else pakiet->skok = 60 * nearbyint(schowek); break;
+				
+				case 'g': if (schowek < 0.5) pakiet->skok = 1* 60 * 60; else pakiet->skok = 60 * 60 * nearbyint(schowek); break;
+				
+				case 'd': if (schowek < 0.5) pakiet->skok = 1 * 60 * 60 * 24; else pakiet->skok = 60 * 60 * 24 * nearbyint(schowek); break;
+				
+				case 'l': if (schowek < 0.5) pakiet->skok = 1 * 60 * 60 * 24 * 365; else pakiet->skok = 60 * 60 * 24 * 365 * nearbyint(schowek); break;				
 			}
 		
 		
@@ -393,11 +422,10 @@ void wyswietl(kolejka *kolejki, int liczba_kolejek,long int czas, long int skok)
 		long int licznik, liczydlo;
 		
 		for(licznik=0;licznik<liczba_kolejek;licznik++)
-			{	printf("\n\nOKIENKO %ld\nsekunda	dlugosc kolejki		ilosc obsluzonych\n", licznik+1);
+			{	printf("\n\nOKIENKO %ld\n\tczas				dlugosc kolejki			obsluzeni klienci \n", licznik+1);
 				for(liczydlo=0;liczydlo<czas;liczydlo++)
 				{
-					printf("%ld\t\t%d\t\t\t%ld\n", liczydlo, kolejki[licznik].rejestr[liczydlo].dlugosc, kolejki[licznik].rejestr[liczydlo].obsluzeni);
-				
+					if (liczydlo%skok == 0) printf("godz:%ld\tmin:%ld\tsek:%ld\t\t\t%d\t\t\t\t%ld\n", liczydlo/(60*60), (liczydlo%3600)/60, liczydlo%60, kolejki[licznik].rejestr[liczydlo].dlugosc, kolejki[licznik].rejestr[liczydlo].obsluzeni);
 				
 				}
 			}
@@ -411,10 +439,6 @@ void wyswietl(kolejka *kolejki, int liczba_kolejek,long int czas, long int skok)
 	
 	
 	
-	co jeszcze zrobic:
-	dodac do funkcji wczytaj skok
-	w ogole dodac skok
-	dodac kontrole np dla g:8   (zamiast s)
-	dodac opcje podawania czasu przy okienku w sekundach
+	
 
 	
